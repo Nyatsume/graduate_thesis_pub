@@ -3,10 +3,10 @@ cd `dirname $0`
 echo `dirname $0`
 pwd
 ls
-git config --global user.name "im-neko"
-git config --global user.email "yuki@ideta.net"
+git config --global user.name "yas-nyan"
+git config --global user.email "yas-nyan@sfc.wide.ad.jp"
 
-git remote set-url origin https://im-neko:${GITHUB_TOKEN}@github.com/Im-neko/RG-Thesis-Template.git
+git remote set-url origin git@github.com:yas-nyan/master_thesis.git
 
 git checkout -b master
 git pull origin master
