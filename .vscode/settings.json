@@ -1,0 +1,23 @@
+{
+    "window.zoomLevel": 0,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "explorer.confirmDelete": false,
+    "latex-workshop.latex.tools": [
+        // latexmk を利用した xelatex によるビルドコマンド
+        {
+            "name": "docker_build",
+            "command": "./make.sh",
+            "args": []
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        // XeLaTeX で書かれた文書のビルドレシピ
+        {
+            "name": "Docker",
+            "tools": [
+                "docker_build"
+            ]
+        },
+    ],
+    "editor.renderControlCharacters": true,
+}
