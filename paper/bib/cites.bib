@@ -8,11 +8,11 @@
 
 % JANOG 44
 @conference{JANOG44_robust,
-	author={石田慶樹 and 吉田友哉 and 西田圭},
-	title={日本のインターネットは本当にロバストになったのか？},
-	booktitle={JANOG 44 ミーティング},
-	year={2019},
-	note={\url{https://www.janog.gr.jp/meeting/janog44/application/files/7715/6577/5523/janog44-robust-ishida-01.pdf}}
+  author={石田慶樹 and 吉田友哉 and 西田圭},
+  title={日本のインターネットは本当にロバストになったのか？},
+  booktitle={JANOG 44 ミーティング},
+  year={2019},
+  note={\url{https://www.janog.gr.jp/meeting/janog44/application/files/7715/6577/5523/janog44-robust-ishida-01.pdf}}
 }
 % ビジネスの継続性のためには災害と付き合わなくちゃいけないよねっていうことが言いたいだけ．
 @article{alonso2001business,
@@ -63,20 +63,95 @@
   publisher={IEEE}
 }
 
+%IPv6普及率
+@misc{Google_IPv6_statistics,
+  author = {Google},
+  title = {IPv6 statistics},
+  howpublished = {\url{https://www.google.com/intl/en/ipv6/statistics.html}},
+  note = {最終閲覧: 2019-12-18}
+}
+
+% SIIT-DC
+@misc{RFC7755,
+        series =        {Request for Comments},
+        number =        7755,
+        howpublished =  {RFC 7755},
+        publisher =     {RFC Editor},
+        doi =           {10.17487/RFC7755},
+        url =           {https://rfc-editor.org/rfc/rfc7755.txt},
+        author =        {Tore Anderson},
+        title =         {{SIIT-DC: Stateless IP/ICMP Translation for IPv6 Data Center Environments}},
+        pagetotal =     24,
+        year =          2016,
+        month =         feb,
+        abstract =      {This document describes the use of the Stateless IP/ICMP Translation Algorithm (SIIT) in an IPv6 Internet Data Center (IDC). In this deployment model, traffic from legacy IPv4-only clients on the Internet is translated to IPv6 upon reaching the IDC operator's network infrastructure. From that point on, it may be treated the same as traffic from native IPv6 end users. The IPv6 endpoints may be numbered using arbitrary (non-IPv4-translatable) IPv6 addresses. This facilitates a single-stack IPv6-only network infrastructure, as well as efficient utilization of public IPv4 addresses. The primary audience is IDC operators who are deploying IPv6, running out of available IPv4 addresses, and/or feeling that dual stack causes undesirable operational complexity.},
+}
+
+% EAMT
+@misc{RFC7757,
+  series =        {Request for Comments},
+  number =        7757,
+  howpublished =  {RFC 7757},
+  publisher =     {RFC Editor},
+  doi =           {10.17487/RFC7757},
+  url =           {https://rfc-editor.org/rfc/rfc7757.txt},
+  author =        {Tore Anderson and Alberto Leiva},
+  title =         {{Explicit Address Mappings for Stateless IP/ICMP Translation}},
+  pagetotal =     19,
+  year =          2016,
+  month =         feb,
+  abstract =      {This document extends the Stateless IP/ICMP Translation Algorithm (SIIT) with an Explicit Address Mapping (EAM) algorithm and formally updates RFC 6145. The EAM algorithm facilitates stateless IP/ICMP translation between arbitrary (non-IPv4-translatable) IPv6 endpoints and IPv4.},
+}
+
+% BGP4
+@misc{RFC4271,
+	series =	{Request for Comments},
+	number =	4271,
+	howpublished =	{RFC 4271},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4271},
+	url =		{https://rfc-editor.org/rfc/rfc4271.txt},
+        author =	{Yakov Rekhter and Susan Hares and Tony Li},
+	title =		{{A Border Gateway Protocol 4 (BGP-4)}},
+	pagetotal =	104,
+	year =		2006,
+	month =		jan,
+	abstract =	{This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network "class" within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. {[}STANDARDS-TRACK{]}},
+}
+
+% IP/ICMP Translation Algorithm
+@misc{RFC7915,
+	series =	{Request for Comments},
+	number =	7915,
+	howpublished =	{RFC 7915},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC7915},
+	url =		{https://rfc-editor.org/rfc/rfc7915.txt},
+        author =	{Congxiao Bao and Xing Li and Fred Baker and Tore Anderson and Fernando Gont},
+	title =		{{IP/ICMP Translation Algorithm}},
+	pagetotal =	34,
+	year =		2016,
+	month =		jun,
+	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 6145.},
+}
+
+
+
+
 
 %% SDNでIPv6Accessを提供する的な論文
 @INPROCEEDINGS{6858474,
-	author={W. {Xia} and T. {Tsou} and D. {Lopez} and F. {Lu} and Q. {Sun} and W. {Feng} and K. {Hu} and H. {Xie}},
-	booktitle={Proceedings of the 2014 ITU kaleidoscope academic conference: Living in a converged world - Impossible without standards?},
-	title={A software defined approach to unified IPv6 transition},
-	year={2014},
-	volume={},
-	number={},
-	pages={9-13},
-	keywords={Internet;IP networks;transport protocols;software defined approach;unified IPv6 transition;IPv4 address space;end-to-end network upgrades;transition protocols;Software;Internet;Tunneling;Protocols;Hardware;Process control;Complexity theory;software defined networking;IPv6;IPv4;OpenFlow},
-	doi={10.1109/Kaleidoscope.2014.6858474},
-	ISSN={null},
-	month={June}
+  author={W. {Xia} and T. {Tsou} and D. {Lopez} and F. {Lu} and Q. {Sun} and W. {Feng} and K. {Hu} and H. {Xie}},
+  booktitle={Proceedings of the 2014 ITU kaleidoscope academic conference: Living in a converged world - Impossible without standards?},
+  title={A software defined approach to unified IPv6 transition},
+  year={2014},
+  volume={},
+  number={},
+  pages={9-13},
+  keywords={Internet;IP networks;transport protocols;software defined approach;unified IPv6 transition;IPv4 address space;end-to-end network upgrades;transition protocols;Software;Internet;Tunneling;Protocols;Hardware;Process control;Complexity theory;software defined networking;IPv6;IPv4;OpenFlow},
+  doi={10.1109/Kaleidoscope.2014.6858474},
+  ISSN={null},
+  month={June}
 }
 
 %% OpenFlowでIPv4/IPv6変換を実現する手法が書いている
