@@ -2,37 +2,93 @@
 \label{related}
 本章ではIPv6シングルスタックネットワークでのIPv4サービス提供手法を比較し，検討する．
 
-\section{IPv4 as a Service}
 
-目的: IPv4 as a Service
- IPv6 Single Stackネットワークにおける透過的なIPv4サービス提供
-IPv4 aa S 手法分類
-https://www.a10networks.co.jp/products/features/IPv4.html
+\section{概要}
+\label{related:abstract}
 
- 大別して以下の3種に分けられる。
-Proxy 手法
-例：LBによるプロキシ
-IPv4⇔IPv6 SLB
-Tunne手法
-例：
-ネットワークプロトコル変換法
-例：SIIT-DC
-各手法の比較
-星取り表で比較
 
- プロトコルの柔軟さ
+第\ref{introduction:background:IPv6-single-stack-network}で述べたように，コンテンツ事業者が運用するIPv6シングルスタックネットワークの重要な役割の一つに，IPv4クライアント端末に対するサービス提供がある．
 
-いろんなプロトコルで利用できるかなど
-事業者の規模的にProxy法は複数事業者で運営しにくい。
- デプロイメントの容易さ
+関連して，アクセスネットワーク網ではIPv6シングルスタックネットワーク上でIPv4によるインターネット接続をクライアントエッジに提供する手法はをIPv4aaS\footnote{IPv4 as a Service}と呼称し，様々な手法が検討されている\cite{RFC8585}．
 
-どれだけの機器を入れなくちゃいけないとか
+一方でコンテンツ事業者が運用するネットワークでのIPv4サービス提供においては下のような要件を満たす必要があるため，必ずしもアクセスネットワークでのIPv4aaSと同様の方法が適切であるとは限らない．
 
-中継機器で考えなくちゃいけないことなど
+\subsection{IPv4サービス提供機構に求められる要件}
+\label{related:abstract:requirements}
 
- IPv4 アドレスの節約度
+\subsubsection{IPv4クライアントからのアクセス}
+IPv4クライアントに対して透過的にサービスを提供する機構を備える．
+一般的なサーバークライアントモデルを想定した場合，インターネット上のIPv4クライアントからサービス提供サーバーに能動的に接続するためには，FQDN\footnote{Fully Qualified Domain Name. 完全就職ドメイン名}もしくはIPv4アドレスをIPv4クライアントが指定出来る必要がある．
 
-どれだけ実際にv4アドレスを節約出来るかなど
 
-まとめ
- ネットワーク・プロトコル変換法が良いアルと高らかに宣言
+\subsubsection{スケーラビリティ}
+近年のコンテンツ事業者のネットワークでは，サービスのニーズに合わせて柔軟にスケールアウト\footnote{水平スケール．同等性能の機器を増減させることでサービス容量を拡大・縮小可能なモデル．}可能な設計であることが重要視されている\cite{5550998}．
+
+同様にIPv4サービスの提供手法に関しても，事業者のIPv4サービス規模の変化にあわせて柔軟に拡大・縮小可能なアーキテクチャ
+
+例えば，第\ref{introduction:background:IPv6-single-stack-network:ipv4-service}でも述べたように，将来的にIPv4クライアントの占める割合がIPv6クライアントに相対して低下していった場合に，既設のIPv6ネットワークへの影響を最小限にしつつ，IPv4サービス提供機構を縮小可能であると望ましい．
+
+
+\subsubsection{IPv4ネットワークへの非依存性}
+第\ref{introduction:background:IPv6-single-stack-network}項で述べたように，IPv6シングルスタックネットワークのメリットを最大限に活かすためにはIPv4サービスを提供する場合においてもIPv4ネットワーク及びアドレスを極力利用せずに極力依存しないことが望ましい．
+
+
+
+\section{IPv4サービス提供手法の分類}
+想定されるIPv4サービス提供機構をその技術的差異や狙いを基に以下の3つの手法に分類した．
+
+\subsection{L7リバースプロキシ}
+
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=15cm,pagebox=cropbox,clip]{img/L7_proxy_model.pdf}
+    \end{center}
+    \caption{L7リバースプロキシによるIPv4サービス提供}
+    \label{fig:L7_proxy_model}
+\end{figure}
+
+
+L7リバースプロキシとは，クライアントからの接続をプロキシサーバーがアプリケーション層レベルで終端し，プロキシサーバーがクライアントに代わってサーバーと接続する機構である\cite{Gilly2011}．主にWEBサーバーへのHTTP接続を負荷分散するための手法として広く採用されている．
+
+IPv6シングルスタックネットワークにおいてIPv4サービスを提供するためには，IPv4インターネットとの接続点からプロキシサーバーまでの間にIPv4ネットワークを配備する必要がある．
+
+IPv4・IPv6間のプロトコル仕様の差を考慮する必要が無いため互換性に留意する必要が無い点や，MTU\footnote{Maximum Transmission Unit.ここでは一つのパケットに搭載可能なデータ量を指す．}を減らさずにアプリケーショントラフィックを伝送可能である点が利点に挙げられる．
+
+一方でアプリケーションレイヤーでのコネクション終端やそのステート管理を行う必要があるため，プロキシサーバーに負荷が掛かるため高性能な機器の導入が必要になる．
+
+またスケールアウトを可能にするためにL4LBと組み合わせた3ステージのアーキテクチャ利用する手法が近年主流である\cite{Facebook_LB, Google_LB}が，この手法を採用するためには，ある程度のIPv4ネットワークを配備する必要があり，第\ref{related:abstract:requirements}項で述べた要件に合致せず，IPv6シングルスタックネットワークのメリットを損なうことになる．
+
+
+
+\subsection{IPv4/IPv6トンネリング}
+
+IPv4/IPv6トンネリングとは，IPv4パケットをIPv6パケットによってカプセリングすることでIPv6ネットワークを通過させる手法である．IPv4トラフィックを透過的に利用することが出来るため，アクセスネットワークで最も一般的に利用されているIPv4aaS手法である．
+
+
+IPv6シングルスタックにおけるIPv4サービス提供手法としては，IPv4クライアントから到達したパケットをトンネルルーターによって一度IPv6パケットでカプセリングし，IDC内のIPv6シングルスタックネットワークを通過させ，IPv4サービス提供サーバー上もしくはその直前で再びでカプセリングを解くことで，IPv4提供サーバーまでネイティブなIPv4トラフィックを通過させる運用が考えらえる．
+IPv4ネットワークをサーバーで利用できるため，多種多様なアプリケーションでの採用が期待できる．
+
+しかしながら，トンネルルーターとIPv4サービスサーバー間にある程度のIPv4ネットワークを配備しなければならず，ToR\footnote{Top of rack switch. ここではサーバーのL2終端を行うルーターを指す．}及びサーバーではIPv4/IPV6デュアルスタック運用が必要になるため，第\ref{related:abstract:requirements}項で上げた要件である「IPv4ネットワークへの非依存性」に合致しない．また，トンネルプロトコルの多く\cite{6799698}はは基本的に1:1もしくは1:Nの接続が基本となるため，水平スケールさせることが困難である．
+
+
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=15cm,pagebox=cropbox,clip]{img/Tunneling_model.pdf}
+    \end{center}
+    \caption{IPv4/IPv6トンネリングによるIPv4サービス提供}
+    \label{fig:tunneling_model}
+\end{figure}
+
+
+
+\subsection{IPv4/IPv6トランスレーション}
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=15cm,pagebox=cropbox,clip]{img/translation_model.pdf}
+    \end{center}
+    \caption{IPv4/IPv6トランスレーションによるIPv4サービス提供}
+    \label{fig:tunneling_model}
+\end{figure}
+
+
+

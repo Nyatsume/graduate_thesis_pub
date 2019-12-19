@@ -84,7 +84,7 @@
         pagetotal =     24,
         year =          2016,
         month =         feb,
-        abstract =      {This document describes the use of the Stateless IP/ICMP Translation Algorithm (SIIT) in an IPv6 Internet Data Center (IDC). In this deployment model, traffic from legacy IPv4-only clients on the Internet is translated to IPv6 upon reaching the IDC operator's network infrastructure. From that point on, it may be treated the same as traffic from native IPv6 end users. The IPv6 endpoints may be numbered using arbitrary (non-IPv4-translatable) IPv6 addresses. This facilitates a single-stack IPv6-only network infrastructure, as well as efficient utilization of public IPv4 addresses. The primary audience is IDC operators who are deploying IPv6, running out of available IPv4 addresses, and/or feeling that dual stack causes undesirable operational complexity.},
+        abstract =      {This document describes the use of the Stateless IP/ICMP Translation Algorithm (SIIT) in an IPv6 Internet Data Center (IDC). In this deployment model, traffic from legacy IPv4-only clients on the Internet is translated to IPv6 upon reaching the IDC operator's network infrastructure. From that point on, it may be treated the same as traffic from native IPv6 end users. The IPv6 endpoints may be numbered using arbitrary (non-IPv4-translatable) IPv6 addresses. This facilitates a single-stack IPv6-only network infrastructure, as well as efficient utilization of public IPv4 addresses. The primary audience is IDC operators who are deploying IPv6, running out of available IPv4 addresses, and/or feeling that dual stack causes undesirable operational complexity.}
 }
 
 % EAMT
@@ -100,7 +100,7 @@
   pagetotal =     19,
   year =          2016,
   month =         feb,
-  abstract =      {This document extends the Stateless IP/ICMP Translation Algorithm (SIIT) with an Explicit Address Mapping (EAM) algorithm and formally updates RFC 6145. The EAM algorithm facilitates stateless IP/ICMP translation between arbitrary (non-IPv4-translatable) IPv6 endpoints and IPv4.},
+  abstract =      {This document extends the Stateless IP/ICMP Translation Algorithm (SIIT) with an Explicit Address Mapping (EAM) algorithm and formally updates RFC 6145. The EAM algorithm facilitates stateless IP/ICMP translation between arbitrary (non-IPv4-translatable) IPv6 endpoints and IPv4.}
 }
 
 % BGP4
@@ -116,7 +116,7 @@
 	pagetotal =	104,
 	year =		2006,
 	month =		jan,
-	abstract =	{This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network "class" within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. {[}STANDARDS-TRACK{]}},
+	abstract =	{This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network "class" within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. {[}STANDARDS-TRACK{]}}
 }
 
 % IP/ICMP Translation Algorithm
@@ -132,7 +132,94 @@
 	pagetotal =	34,
 	year =		2016,
 	month =		jun,
-	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 6145.},
+	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 6145.}
+}
+
+% IPv4aaS
+@misc{RFC8585,
+	series =	{Request for Comments},
+	number =	8585,
+	howpublished =	{RFC 8585},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8585},
+	url =		{https://rfc-editor.org/rfc/rfc8585.txt},
+  author =	{Jordi Palet and Hans M.-H. Liu and Masanobu Kawashima},
+	title =		{{Requirements for IPv6 Customer Edge Routers to Support IPv4-as-a-Service}},
+	pagetotal =	21,
+	year =		2019,
+	month =		may,
+	abstract =	{This document specifies the IPv4 service continuity requirements for IPv6 Customer Edge (CE) routers that are provided either by the service provider or by vendors who sell through the retail market. Specifically, this document extends the basic requirements for IPv6 CE routers as described in RFC 7084 to allow the provisioning of IPv6 transition services for the support of IPv4-as-a-Service (IPv4aaS) by means of new transition mechanisms. The document only covers IPv4aaS, i.e., transition technologies for delivering IPv4 in IPv6-only access networks. IPv4aaS is necessary because there aren't sufficient IPv4 addresses available for every possible customer/ device. However, devices or applications in the customer Local Area Networks (LANs) may be IPv4-only or IPv6-only and still need to communicate with IPv4-only services on the Internet.}
+}
+
+% Scale-Out Networking
+
+@ARTICLE{5550998,
+  author={A. {Vahdat} and M. {Al-Fares} and N. {Farrington} and R. N. {Mysore} and G. {Porter} and S. {Radhakrishnan}},
+  journal={IEEE Micro},
+  title={Scale-Out Networking in the Data Center},
+  year={2010},
+  volume={30},
+  number={4},
+  pages={29-41},
+  keywords={computer architecture;computer centres;computer network management;data centre;scale-out architecture;incremental scalability;UCSD Triton network architecture;network managing;plug-and-play virtual fabric;Optical switches;Bandwidth;Topology;Network topology;Servers;Biological system modeling;Computational modeling;datacenter network architecture;scale-out networking;merchant silicon;L2 fabric;datacenter routing;network fault-tolerance.},
+  doi={10.1109/MM.2010.72},
+  ISSN={1937-4143},
+  month={July}
+}
+
+% WEB Loadbalancer 比較
+@Article{Gilly2011,
+  author="Gilly, Katja
+  and Juiz, Carlos
+  and Puigjaner, Ramon",
+  title="An up-to-date survey in web load balancing",
+  journal="World Wide Web",
+  year="2011",
+  month="Mar",
+  day="01",
+  volume="14",
+  number="2",
+  pages="105--131",
+  abstract="This survey is an up-to-date state-of-the-art in Web load balancing mechanisms that includes all the possible classifications and focuses on the advantages of using load balancing solutions to increase the performance of the Web system. A general description of the Web load balancing solutions is included and organised by differentiating the OSI protocol stack layer the load balancing is based on. The most important request distributing polices that are proposed in the literature are also included. This article summarises all previous surveys on the Web load balancing subject and updates the state-of-the-art with the most recent load balancing  proposals.",
+  issn="1573-1413",
+  doi="10.1007/s11280-010-0101-5",
+  url="https://doi.org/10.1007/s11280-010-0101-5"
+}
+
+% Google Maglev
+@inproceedings{Google_LB,
+  title	= {Maglev: A Fast and Reliable Software Network Load Balancer},
+  author	= {Daniel E. Eisenbud and Cheng Yi and Carlo Contavalli and Cody Smith and Roman Kononov and Eric Mann-Hielscher and Ardas Cilingiroglu and Bin Cheyney and Wentao Shang and Jinnah Dylan Hosein},
+  year	= {2016},
+  URL	= {https://www.usenix.org/conference/nsdi16/technical-sessions/presentation/eisenbud},
+  booktitle	= {13th USENIX Symposium on Networked Systems Design and Implementation (NSDI 16)},
+  pages	= {523--535},
+  address	= {Santa Clara, CA}
+}
+
+% Facebook LB
+@conference {Facebook_LB,
+  author = {Patrick Shuff},
+  title = {Building A Billion User Load Balancer},
+  year = {2015},
+  address = {Dublin},
+  publisher = {{USENIX} Association},
+  month = may,
+}
+
+% IPv4overIPv6 compare
+@INPROCEEDINGS{6799698,
+  author={N. {Chuangchunsong} and S. {Kamolphiwong} and T. {Kamolphiwong} and R. {Elz} and P. {Pongpaibool}},
+  booktitle={The International Conference on Information Networking 2014 (ICOIN2014)},
+  title={Performance evaluation of IPv4/IPv6 transition mechanisms: IPv4-in-IPv6 tunneling techniques},
+  year={2014},
+  volume={},
+  number={},
+  pages={238-243},
+  keywords={computer network reliability;delays;Internet;IP networks;quality of service;IPv4-IPv6 transition mechanisms;IPv4-in-IPv6 tunneling techniques;IPv4 address space;Internet service providers;ISP;IPv4-IPv6 migration-transition tools;DS-lite;intracommunication reliability;quality-of-service;QoS;intercommunication reliability;Delays;Ports (Computers);Tunneling;Time factors;Routing;Reliability;IP networks;IPv6;DS-Lite;4over6;4rd;IPv4/IPv6 transition},
+  doi={10.1109/ICOIN.2014.6799698},
+  ISSN={2332-5658},
+  month={Feb},
 }
 
 
@@ -182,4 +269,5 @@ pages={1-6},
 keywords={IP networks;telecommunication network topology;topologies;translation mechanisms;DNS64;NAT64;DHCPv6;IPv6 transition mechanisms;virtual lab;IPv6 networks;Linux;Tools;Virtualization;Protocols;Network topology;Tunneling;Relays;IPv6;transition mechanisms;virtualization;hybrid network addressing},
 doi={10.1109/LATINCOM.2017.8240145},
 ISSN={null},
-month={Nov}}
+month={Nov}
+}
