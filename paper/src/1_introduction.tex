@@ -28,7 +28,7 @@
 	\centering
 	\includegraphics[width=8cm]{img/plotend.png}
 	\caption{Projection of consumption of Remaining RIR Address Pools. \url{potaroo.net}より引用\cite{potaroo_IPv4}}
-	\label{potaroo_IPv4_fig}
+	\label{fig:potaroo_IPv4}
 \end{figure}
     
 一方で近年は民間事業者間アドレス取引も盛んに行われている．一般に新規にIPv4アドレスの割当を受けるためにはこのような民間取引市場を利用する方法が考えられるが，1アドレスあたりの単価は年々上昇傾向にあり\cite{howard2013internet}，新規にIPv4ネットワークを構築するためのコストは日々上昇していくことが考えられる．
@@ -62,13 +62,16 @@ IDCのIPv6シングルスタックネットワークには以下のような働�
 
 
 \subsubsection{IPv4サービスの提供}
+\label{introduction:background:IPv6-single-stack-network:ipv4-service}
 Google社が定常的に行っている調査\cite{Google_IPv6_statistics}によれば，2019年12月現在全世界のインターネットトラフィックの7割程度をIPv4トラフィックが依然として占めている．
+将来的にはIPv6によるアクセスの割合が徐々に大きくなることが予想されるが，今後しばらくはIPv4クライアントに対してもIPv6クライアントと同等にサービス提供を行っていくことが望ましい．
 
-コンテンツ事業者のIPv6シングルスタックネットワークにおいても何らかの手段を用いてIPv4サービスを継続して提供する必要がある．
+コンテンツ事業者のIPv6シングルスタックネットワークにおいても，何らかの手段を用いてIPv4サービスを継続して提供する機構を備える必要がある．
 
 \subsubsection{シングルスタック運用によるOPEX/CAPEXの削減}
 第\ref{introduction:background:dualstack_problems}項で述べたように，IPv4/IPv6デュアルスタックネットワークではオペレーションコストの肥大化が問題視されていた．
 IPv6シングルスタックネットワークではIPv4ネットワークを廃止することが出来るため，OPEX\footnote{Operating expense. 運用に掛かる継続的なコスト．}とCAPEX\footnote{Capital expenditure. 設備配備に掛かる初期投資コスト．}の軽減が期待される．
+またIPv6アドレスはIPv4アドレスと比較して広大なアドレススペースを有するため，アドレススペースに依存しない柔軟なネットワーク設計が可能になる．
 
 \subsubsection{IPv4/IPv6デュアルスタックネットワークと同等以上の性能}
 IPv6により提供されるサービスはもちろんのこと，IPv4によるサービスにおいてもIPv4/IPv6デュアルスタックネットワークと同等の耐障害性・サービス品質・サービス容量が保証されることが望ましい．
