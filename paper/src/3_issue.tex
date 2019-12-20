@@ -1,20 +1,49 @@
-\chapter{SIIT-DCを活用することの目的と現状の課題}
+\chapter{SIIT-DCのデザインと現状の課題}
 \label{issue}
+第\ref{related:compare:translation}で述べたPv4/IPv6トランスレーションを用いたIPv4サービス提供手法の一つとして，SIIT-DCがインターネット標準化されている．
+本章ではてSIIT-DCのデザインとメリット及び考えられる運用，そして現状の課題について述べる．
+\section{SIIT-DC}
 
-\section{アドレス変換によるIPv4aaS}
-\subsection{モチベーション}
+\subsection{概要}
+SIIT-DCとは，ステートレスIP/ICMP変換アルゴリズム\cite{RFC7915}を利用して，IPv4インターネット・ネットワークからのアクセスをIPv6シングルスタックネットワーク上のホストに提供するためのネットワークデザインである．2016年よりIETF IPv6 Operations WG\footnote{IPv6ネットワークの運用要件や関連する技術仕様の策定を行うワーキンググループ．\url{https://datatracker.ietf.org/wg/v6ops/about/}}によりインターネット標準化(Informational RFC)されている\cite{RFC7755}．
 
-なぜIPv4aaSとしてプロトコル変換を選択するのか.
-SIIT-DCのRFCに書いてあることを書く
-
-
-コストの話とか
-
-
-\subsection{基本的なアーキテクチャ}
+SIIT-DCの基本的なアーキテクチャを図(書く)に示す．
 
 
-\section{アドレス変換によるIPv4aaSの問題}
+\subsection{用語}
+SIIT-DCで利用される用語及び特殊な役割を有する機器・技術について述べる．
+
+\subsubsection{SIIT}
+SIIT\footnote{Stateless IP/ICMP Translation Algorithm}とはIPv4/IPv6トランスレーションに用いられるプロトコル変換機能の略称である．RFC2765\cite{RFC2765}で初めて標準化され，その後RFC6145\cite{RFC6145}により一部の仕様が実運用のユースケースに合わせて変更され，現在はIPv6拡張ヘッダーを扱う機構などが追加されたRFC7915\cite{RFC7915}が現行の標準仕様である．
+
+\subsubsection{BR}
+BR\footnote{Border Relay}とは，SIIT-DCネットワークにおいてIPv4インターネットとIPv6ネットワークとの間でSIITによるIPv4/IPv6トランスレーションを行う機器\footnote{専用機器もしくは他の役割を有する機器の一機構．}である．
+IPv4インターネットとIDC内のIPv6シングルスタックネットワークの各境界部に所在し，後述するEAMTを参照した1:1のアドレス変換を行う．IDCネットワークにIPv4インターネットとの接続点が複数ある場合，接続点ごとに最低一つのBRを配備する．
+
+\subsubsection{ER}
+ER\footnote{Edge Relay}とは，IPv4ネットワークとIPv6ネットワークとの境界点において多：多のIPv4/IPv6トランスレーションを行う機器である．
+SIIT-DCではそのオプションとして，IDCネットワーク内のIPv6ネットワークとPv4しか利用出来ないホストが属するIPv4ネットワークとの間を接続するユースケースをサポートするSIIT-DC Dual Translation Mode\cite{RFC7756}が定義されており，ERはその中での利用が想定されている．
+
+\subsubsection{EAM}
+
+\subsubsection{IPv4サービスアドレス}
+
+\subsubsection{IPv6サービスアドレス}
+
+\subsubsection{Translation Prefix}
+本研究ではTranslation Prefixを変換プレフィックスと呼称する．
+
+
+
+
+\subsection{BRの動作}
+
+
+\subsection{ネットワーク設計}
+
+
+
+\section{SIIT-DCの問題}
 
 とにかくEAMTがダイナミックじゃないことに起因すると言う
 変更追従性の欠如
