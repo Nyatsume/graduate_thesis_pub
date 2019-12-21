@@ -1,4 +1,4 @@
-RG-thesis-template
+Master Thesis
 =====
 Forked from https://github.com/yas-nyan/RG-Thesis-Template.
 Thanks neko and chike.(謝辞に書く)
