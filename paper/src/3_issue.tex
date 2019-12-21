@@ -64,7 +64,7 @@ EAMにおいて，IPv4サービスアドレスとIPv6サービスアドレスは
     \caption{SIIT-DC ネットワーク}
     \label{fig:siit-dc_network}
 \end{figure}
-基本的なSIIT-DCネットワークを図\ref{fig:siit-dc_network}に示す．
+基本的なSIIT-DCネットワークを図\ref{fig:siit-dc_network}に示す．IPv6シングルスタックネットワークにおけるIPv4インターネットとの接続点にBRを置くのみで対外的なIPv4サービスの提供画家可能になるため，デプロイメントが容易で，様々なIPv6シングルスタックネットワークにそのまま導入することが出来ることが大きなメリットに挙げられる．
 
 BRはIPv4インターネットとの各接続点に配置される．各IPv4サービスアドレスはBGPにより接続先のAS\footnote{Aunotoumous System. インターネットを構成する自律した組織．}に対して経路広告される．変換プレフィックス宛のパケットは各BRに広告される．
 

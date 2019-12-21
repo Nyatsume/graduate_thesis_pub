@@ -311,6 +311,23 @@
 	month =		apr,
 	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 2765. {[}STANDARDS-TRACK{]}},
 }
+% NAT64
+@misc{rfc6146,
+	series =	{Request for Comments},
+	number =	6146,
+	howpublished =	{RFC 6146},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC6146},
+	url =		{https://rfc-editor.org/rfc/rfc6146.txt},
+        author =	{Philip Matthews and Iljitsch van Beijnum and Marcelo Bagnulo},
+	title =		{{Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers}},
+	pagetotal =	45,
+	year =		2011,
+	month =		apr,
+	abstract =	{This document describes stateful NAT64 translation, which allows IPv6-only clients to contact IPv4 servers using unicast UDP, TCP, or ICMP. The public IPv4 address can be shared among several IPv6-only clients. When the stateful NAT64 is used in conjunction with DNS64 no changes are usually required in the IPv6 client or the IPv4 server.},
+}
+
+
 
 % 64:ff9b::/48の話
 @misc{RFC8215,
@@ -345,8 +362,26 @@
 }
 
 
+% human errorが大きな割合を占めてるというのを探すだけで30分掛かってキレそう
 
+NPO 日本ネットワークセキュリティ協会(JNSA):2013 年情報セキュリティインシデントに関する調査報告書—個 人情報漏えい編，第 1.1 版，入手先 ⟨http://www.jnsa.org/ result/incident/data/2013incident survey ver1.1.pdf⟩ (参照 2015-01-08).
+@misc{human_error,
+  title={情報セキュリティインシデントに関する調査報告書},
+  author={NPO 日本ネットワークセキュリティ協会(JNSA)},
+  year={2018},
+  howpublished = {\url{https://www.jnsa.org/result/incident/2018.html}},
+  note = {最終閲覧: 2019-12-21}
+}
 
+& HA構成
+@misc{gadir2005high,
+  title={High-availability cluster virtual server system},
+  author={Gadir, Omar MA and Subbanna, Kartik and Vayyala, Ananda R and Shanmugam, Hariprasad and Bodas, Amod P and Tripathy, Tarun Kumar and Indurkar, Ravi S and Rao, Kurma H},
+  year={2005},
+  month=sep # "~13",
+  publisher={Google Patents},
+  note={US Patent 6,944,785}
+}
 
 
 %% SDNでIPv6Accessを提供する的な論文
@@ -362,6 +397,16 @@
   doi={10.1109/Kaleidoscope.2014.6858474},
   ISSN={null},
   month={June}
+}
+
+% Pull型で監視するSDN
+@inproceedings{chowdhury2014payless,
+  title={Payless: A low cost network monitoring framework for software defined networks},
+  author={Chowdhury, Shihabur Rahman and Bari, Md Faizul and Ahmed, Reaz and Boutaba, Raouf},
+  booktitle={2014 IEEE Network Operations and Management Symposium (NOMS)},
+  pages={1--9},
+  year={2014},
+  organization={IEEE}
 }
 
 %% OpenFlowでIPv4/IPv6変換を実現する手法が書いている
@@ -381,6 +426,8 @@ month={May}
 
 
 
+
+
 %% IPv6以降技術まとめ。LinuxのNAT64シリーズの話もあるよ
 @INPROCEEDINGS{8240145,
 author={J. M. V. {Ruiz} and C. S. {Cardenas} and J. L. M. {Tapia}},
@@ -395,3 +442,41 @@ doi={10.1109/LATINCOM.2017.8240145},
 ISSN={null},
 month={Nov}
 }
+
+
+% SDNまとめ
+@misc{RFC7426,
+	series =	{Request for Comments},
+	number =	7426,
+	howpublished =	{RFC 7426},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC7426},
+	url =		{https://rfc-editor.org/rfc/rfc7426.txt},
+        author =	{Evangelos Haleplidis and Kostas Pentikousis and Spyros Denazis and Jamal Hadi Salim and David Meyer and Odysseas Koufopavlou},
+	title =		{{Software-Defined Networking (SDN): Layers and Architecture Terminology}},
+	pagetotal =	35,
+	year =		2015,
+	month =		jan,
+	abstract =	{Software-Defined Networking (SDN) refers to a new approach for network programmability, that is, the capacity to initialize, control, change, and manage network behavior dynamically via open interfaces. SDN emphasizes the role of software in running networks through the introduction of an abstraction for the data forwarding plane and, by doing so, separates it from the control plane. This separation allows faster innovation cycles at both planes as experience has already shown. However, there is increasing confusion as to what exactly SDN is, what the layer structure is in an SDN architecture, and how layers interface with each other. This document, a product of the IRTF Software-Defined Networking Research Group (SDNRG), addresses these questions and provides a concise reference for the SDN research community based on relevant peer-reviewed literature, the RFC series, and relevant documents by other standards organizations.},
+}
+
+
+% CAP定理
+@article{Gilbert:2002:BCF:564585.564601,
+ author = {Gilbert, Seth and Lynch, Nancy},
+ title = {Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-tolerant Web Services},
+ journal = {SIGACT News},
+ issue_date = {June 2002},
+ volume = {33},
+ number = {2},
+ month = jun,
+ year = {2002},
+ issn = {0163-5700},
+ pages = {51--59},
+ numpages = {9},
+ url = {http://doi.acm.org/10.1145/564585.564601},
+ doi = {10.1145/564585.564601},
+ acmid = {564601},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
