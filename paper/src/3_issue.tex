@@ -3,14 +3,15 @@
 第\ref{related:compare:translation}で述べたPv4/IPv6トランスレーションを用いたIPv4サービス提供手法の一つとして，SIIT-DCがインターネット標準化されている．
 本章ではてSIIT-DCのデザインとメリット及び考えられる運用，そして現状の課題について述べる．
 \section{SIIT-DC}
+\label{issue:siit-dc}
+
 
 \subsection{概要}
 SIIT-DCとは，ステートレスIP/ICMP変換アルゴリズム\cite{RFC7915}を利用して，IPv4インターネット・ネットワークからのアクセスをIPv6シングルスタックネットワーク上のホストに提供するためのネットワークデザインである．2016年よりIETF IPv6 Operations WG\footnote{IPv6ネットワークの運用要件や関連する技術仕様の策定を行うワーキンググループ．\url{https://datatracker.ietf.org/wg/v6ops/about/}}によりインターネット標準化(Informational RFC)されている\cite{RFC7755}．
 
-SIIT-DCの基本的なアーキテクチャを図(書く)に示す．
-
 
 \subsection{用語}
+\label{issue:siit-dc:terms}
 SIIT-DCで利用される用語及び特殊な役割を有する機器・技術について述べる．
 
 \subsubsection{SIIT}
@@ -22,32 +23,91 @@ IPv4インターネットとIDC内のIPv6シングルスタックネットワー
 
 \subsubsection{ER}
 ER\footnote{Edge Relay}とは，IPv4ネットワークとIPv6ネットワークとの境界点において多：多のIPv4/IPv6トランスレーションを行う機器である．
-SIIT-DCではそのオプションとして，IDCネットワーク内のIPv6ネットワークとPv4しか利用出来ないホストが属するIPv4ネットワークとの間を接続するユースケースをサポートするSIIT-DC Dual Translation Mode\cite{RFC7756}が定義されており，ERはその中での利用が想定されている．
+SIIT-DCではそのオプションとして，IPv4ネットワーク内のIPv4しか利用出来ないホストが，SIIT-DCを利用してIPv4サービスを提供するユースケースをサポートするSIIT-DC Dual Translation Mode\cite{RFC7756}が定義されており，ERはその中での利用が想定されている．
 
-\subsubsection{EAM}
+通常，ERが参照するEAMT中のEAMはIDCネットワーク内のIPv4ネットワーク全体を包括的に指定したIPv4ネットワークアドレスと，そのIPv4ネットワークを表すIPv6サービスアドレスにより構成される．
 
 \subsubsection{IPv4サービスアドレス}
+IPv4サービスを提供するIPv6シングルスタックネットワークに属するホストに割り当てるIPv4アドレス(群)をIPv4サービスアドレスと呼称する．
+このアドレス宛に送信されたパケットは，BR/ERによって対応するIPv6サービスアドレスに変換される．
+
+なお，IPv4サービスアドレスはBGP\cite{RFC4271}によってIPv4インターネットに経路広告されている必要がある．
 
 \subsubsection{IPv6サービスアドレス}
+ER/BRを介してアプリケーションやホストに割り当てられたIPv6アドレス(群)をIPv4サービスアドレスと呼称する．
+IPv4クライアントはSIIT-DCのアーキテクチャをを介して，このIPv6サービスアドレスが割り当てられたホストと通信することが出来る．
 
-\subsubsection{Translation Prefix}
-本研究ではTranslation Prefixを変換プレフィックスと呼称する．
+\subsubsection{変換プレフィックス}
+\label{issue:siit-dc:translation-prefix}
+ 
+変換プレフィックス\footnote{Translation Prefix.}とは，RFC6052\cite{RFC6052}で定義されたプロトコルに従って全てのIPv4アドレスをマッピングするために用いられるネットワークプレフィックスが96bitのIPv6プレフィックスである．IANAによって主にWKP\footnote{Well Known Prefix. }として64:ff9b::/48が予約\cite{RFC8215,IANA_allocation_v6}されているが，運用者の裁量でISP自身に割り当てられたNSP\footnote{Network Specific Prefx. 主にRIRから割り当てられたIPv6 Global Unicas Addressを指す．}を利用する事ができる．
 
+IPv4アドレスとIPv6アドレスの間で変換を実行する際に，BはBR/ERは変換前のIPヘッダーのアドレスフィールドを、変換プレフィックスが挿入・削除された状態に書き換える。
 
+なおSIIT-DCネットワークにおいて，変換プレフィックス宛のパケットは各BR/ERのIPv6インターフェース宛にIGP\footnote{Interior Gateway Protocol}などでルーティングされる必要がある．
 
+\subsubsection{EAM}
+EAM\footnote{Ecplicit Address Mapping}とは，EAMアルゴリズム\cite{RFC7757}によって結びつけられたIPv4サービスアドレスとIPv6サービスアドレスのペア\footnote{サービスアドレスはそれぞれネットワークプレフィックスとして指定することも想定されている．}を表す．
 
-\subsection{BRの動作}
+EAMにおいて，IPv4サービスアドレスとIPv6サービスアドレスは同数\footnote{標準では結び付けられたIPv6サービスアドレスがIPv4サービスアドレスより多い状態が想定されているが，IPv6サービスアドレスのホスト部が若いものから優先して変換するため，余剰分のアドレスは無視される．}である必要がある．
+
+また，BR及びERが変換を行う際に参照するEAM群が記録されたテーブルをEAMT\footnote{Ecplicit Address Mapping}と定義している．以後EAMTもしくは変換テーブルと呼称する．
+
 
 
 \subsection{ネットワーク設計}
+\label{issue:siit-dc:network}
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=12cm,pagebox=cropbox,clip]{img/siit-dc-network.pdf}
+    \end{center}
+    \caption{SIIT-DC ネットワーク}
+    \label{fig:siit-dc_network}
+\end{figure}
+基本的なSIIT-DCネットワークを図\ref{fig:siit-dc_network}に示す．
+
+BRはIPv4インターネットとの各接続点に配置される．各IPv4サービスアドレスはBGPにより接続先のAS\footnote{Aunotoumous System. インターネットを構成する自律した組織．}に対して経路広告される．変換プレフィックス宛のパケットは各BRに広告される．
+
+BRが複数ある場合，それぞれのBRがIGP等で広告する変換プレフィックスを分けるか，エニーキャスト\cite{RFC4786}によって複数のBRが同一の変換プレフィックスを広告するようにする．エニーキャストを使用した場合，BRの障害時に別のBRへとトラフィックを迂回させることが可能になる．
+
+ERはIDC内のIPv4ネットワークとの接続点に配置され，IPv4のみを持つホストがIDC内のIPv6ネットワークを介してIPv4インターネットにサービス提供を行う場合に利用される．
+
+
+\subsection{基本的なパケットの流れ}
+\label{issue:siit-dc:packet_flow}
+
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=14cm,pagebox=cropbox,clip]{img/siit-dc_packet.pdf}
+    \end{center}
+    \caption{SIIT-DC パケットの流れ}
+    \label{fig:siit-dc_packet}
+\end{figure}
+
+SIIT-DCにおける基本的なIPv4クライアントからのトラフィックの流れは以下の様になる．一連のパケットの送信元・送信先のアドレスの遷移を図\ref{fig:siit-dc_packet}に示す．
+
+IPv4クライアントのIPv4サービスアドレス宛のパケットはIPv4インターネットに接続するBRに到達後，当該BRが有するEAMTに従ってIPv6サービスアドレス宛のIPv6パケットに変換される．このパケットの送信元アドレスは変換プレフィックスに埋め込まれたIPv6アドレスとして表現される．IDC内のIPv6ネットワークを介してIPv6サーバーに到達した後，IPv6サーバーは送信元アドレスへの応答パケットを送信する．第\ref{issue:siit-dc:translation-prefix}項で述べたように，変換プレフィックス宛のパケットはIPv6ネットワークを経由してBRにルーティングされる．IPv6サーバーからの応答を受け取ったBRはEAMTを参照し，送信元アドレス(IPv6サービスアドレス)をIPv4サービスアドレスに書き換え，送信先アドレス(IPv4クライアントのIPv4アドレス)から変換プレフィックスを除去書き換えたのち，IPv4インターネットを介してIPv4クライアントに返送される．
 
 
 
-\section{SIIT-DCの問題}
 
-とにかくEAMTがダイナミックじゃないことに起因すると言う
-変更追従性の欠如
-一貫性の欠如
+\section{SIIT-DCの課題}
+\label{issue:siit-dc_problems}
+本節ではSIIT-DCの現状の課題及びそれに起因して起こる事象に関して述べる．
+
+\subsection{一貫したEAMTの必要性}
+\label{issue:siit-dc_problems:consistent}
+第\ref{issue:siit-dc:terms}で述べたように，SIIT-DCでは対外接続点ごとにBRを配置するネットワークデザインを採用することで，IPv6シングルスタックネットワークに最小限のIPv4ネットワークを追加するのみによりIPv4サービスの提供を可能にしている．また第\ref{issue:siit-dc:network}項で触れたように，複数のBRで共通した変換プレフィックスをエニーキャストでIDCネットワーク内に広告する運用を行うことにより，BR及び対外接続点の障害時に他のBRを用いてIPv4サービスの提供を継続することが出来る．この機構を有効に作用させるためには，SIIT-DCネットワーク内の全てのBRで一貫したEAMTの保持が求められる．
+
+しかしながら現状のSIIT-DC及びEAMTの仕様\cite{RFC7755,RFC7756,RFC7757}では，BRは他のBRとの間でEAMTを共有するためのメッセージング機構を有さない，これはBR間でEAMTの不一致が発生した場合に，差異となったEAMに該当するIPv4サービス宛のトラフィックの別のBRへの迂回が出来なくなるケースが発生することを意味する．
+
+
+\subsection{変更追従性の欠如}
+プライベートクラウド環境が一般的に利用されるIDCネットワークでは，日々多くのサーバーやアプリケーションが追加・廃止・変更される．
+一方で第\ref{issue:siit-dc_problems:consistent}で触れたように，SIIT-DCでIPv4提供サービスを冗長に運用するためには，IPv4提供サービスに該当するEAMがBRのEAMTに保持されることを要求している．IPv4提供サービスの構成に変更があった場合，全てのBRのEAMTに対してEAMの更新を行わなくてはならない．
+
+しかしながら現状SIIT-DC及びEAMTの仕様\cite{RFC7755,RFC7756,RFC7757}において，IPv4サービスを行うサーバーの存在や状態によってダイナミックにEAMTを更新する機構は存在しない．そのため，IDCネットワークにおけるIGPなどによってIPv6サービスへの到達性が検証されていたとしても，IPv4サービスの場合はリアルタイムな構成変更に追従することが出来ない．
+
 
 
 %%% Local Variables:
