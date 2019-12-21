@@ -97,12 +97,30 @@ IPv4クライアントのIPv4サービスアドレス宛のパケットはIPv4�
 
 \subsection{一貫したEAMTの必要性}
 \label{issue:siit-dc_problems:consistent}
+
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=10cm,pagebox=cropbox,clip]{img/siit-dc_can-not-failover.png}
+    \end{center}
+    \caption{BRに障害が発生した場合に適切にフェイルオーバーが出来ないケース}
+    \label{fig:siit-dc_can-not-failover}
+\end{figure}
+
 第\ref{issue:siit-dc:terms}で述べたように，SIIT-DCでは対外接続点ごとにBRを配置するネットワークデザインを採用することで，IPv6シングルスタックネットワークに最小限のIPv4ネットワークを追加するのみによりIPv4サービスの提供を可能にしている．また第\ref{issue:siit-dc:network}項で触れたように，複数のBRで共通した変換プレフィックスをエニーキャストでIDCネットワーク内に広告する運用を行うことにより，BR及び対外接続点の障害時に他のBRを用いてIPv4サービスの提供を継続することが出来る．この機構を有効に作用させるためには，SIIT-DCネットワーク内の全てのBRで一貫したEAMTの保持が求められる．
 
 しかしながら現状のSIIT-DC及びEAMTの仕様\cite{RFC7755,RFC7756,RFC7757}では，BRは他のBRとの間でEAMTを共有するためのメッセージング機構を有さない，これはBR間でEAMTの不一致が発生した場合に，差異となったEAMに該当するIPv4サービス宛のトラフィックの別のBRへの迂回が出来なくなるケースが発生することを意味する．
 
 
 \subsection{変更追従性の欠如}
+
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=10cm,pagebox=cropbox,clip]{img/siit-dc_add-server.png}
+    \end{center}
+    \caption{サーバーを追加した際，全てのBRへの設定追加が必要になる．}
+    \label{fig:siit-dc_add-server}
+\end{figure}
+
 プライベートクラウド環境が一般的に利用されるIDCネットワークでは，日々多くのサーバーやアプリケーションが追加・廃止・変更される．
 一方で第\ref{issue:siit-dc_problems:consistent}で触れたように，SIIT-DCでIPv4提供サービスを冗長に運用するためには，IPv4提供サービスに該当するEAMがBRのEAMTに保持されることを要求している．IPv4提供サービスの構成に変更があった場合，全てのBRのEAMTに対してEAMの更新を行わなくてはならない．
 
