@@ -26,12 +26,21 @@
   publisher={New York State Society of Certified Public Accountants}
 }
 
-% IANA address allocation https://www.iana.org/assignments/ipv4-recovered-address-space/ipv4-recovered-address-space.xhtml
+% IANA address allocation v4 https://www.iana.org/assignments/ipv4-recovered-address-space/ipv4-recovered-address-space.xhtml
 @misc{IANA_allocation,
-  title={IPv4 Recovered Address Space},
+  title={Internet Protocol Version 4 Address Space},
   author={IANA},
   year={2019},
   howpublished = {\url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xml}},
+  note = {最終閲覧: 2019-12-17}
+}
+
+% IANA address allocation v6 https://www.iana.org/assignments/ipv4-recovered-address-space/ipv4-recovered-address-space.xhtml
+@misc{IANA_allocation_v6,
+  title={Internet Protocol Version 6 Address Space},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml}},
   note = {最終閲覧: 2019-12-17}
 }
 
@@ -87,7 +96,24 @@
         abstract =      {This document describes the use of the Stateless IP/ICMP Translation Algorithm (SIIT) in an IPv6 Internet Data Center (IDC). In this deployment model, traffic from legacy IPv4-only clients on the Internet is translated to IPv6 upon reaching the IDC operator's network infrastructure. From that point on, it may be treated the same as traffic from native IPv6 end users. The IPv6 endpoints may be numbered using arbitrary (non-IPv4-translatable) IPv6 addresses. This facilitates a single-stack IPv6-only network infrastructure, as well as efficient utilization of public IPv4 addresses. The primary audience is IDC operators who are deploying IPv6, running out of available IPv4 addresses, and/or feeling that dual stack causes undesirable operational complexity.}
 }
 
-% EAMT
+% SIIT-DC Dual Translation Mode
+@misc{RFC7756,
+	series =	{Request for Comments},
+	number =	7756,
+	howpublished =	{RFC 7756},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC7756},
+	url =		{https://rfc-editor.org/rfc/rfc7756.txt},
+        author =	{Tore Anderson and S.J.M. Steffann},
+	title =		{{Stateless IP/ICMP Translation for IPv6 Internet Data Center Environments (SIIT-DC): Dual Translation Mode}},
+	pagetotal =	17,
+	year =		2016,
+	month =		feb,
+	abstract =	{This document describes an extension of the Stateless IP/ICMP Translation for IPv6 Internet Data Center Environments (SIIT-DC) architecture, which allows applications, protocols, or nodes that are incompatible with IPv6 and/or Network Address Translation to operate correctly with SIIT-DC. This is accomplished by introducing a new component called an SIIT-DC Edge Relay, which reverses the translations made by an SIIT-DC Border Relay. The application and/or node is thus provided with seemingly native IPv4 connectivity that provides end-to-end address transparency. The reader is expected to be familiar with the SIIT-DC architecture described in RFC 7755.},
+}
+
+
+% EAM
 @misc{RFC7757,
   series =        {Request for Comments},
   number =        7757,
@@ -222,7 +248,7 @@
   month={Feb},
 }
 
-% 64:ff9b::/96の話
+% 64:ff9b::/96を最初に定義． 現在は変換方法としてだけ機能
 @misc{RFC6052,
 	series =	{Request for Comments},
 	number =	6052,
@@ -251,7 +277,71 @@
 	pagetotal =	8,
 	year =		2000,
 	month =		nov,
-	abstract =	{Equal-cost multi-path (ECMP) is a routing technique for routing packets along multiple paths of equal cost. The forwarding engine identifies paths by next-hop. When forwarding a packet the router must decide which next-hop (path) to use. This document gives an analysis of one method for making that decision. The analysis includes the performance of the algorithm and the disruption caused by changes to the set of next-hops. This memo provides information for the Internet community.},
+	abstract =	{Equal-cost multi-path (ECMP) is a routing technique for routing packets along multiple paths of equal cost. The forwarding engine identifies paths by next-hop. When forwarding a packet the router must decide which next-hop (path) to use. This document gives an analysis of one method for making that decision. The analysis includes the performance of the algorithm and the disruption caused by changes to the set of next-hops. This memo provides information for the Internet community.}
+}
+
+% SIIT初出
+@misc{RFC2765,
+	series =	{Request for Comments},
+	number =	2765,
+	howpublished =	{RFC 2765},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC2765},
+	url =		{https://rfc-editor.org/rfc/rfc2765.txt},
+        author =	{Erik Nordmark},
+	title =		{{Stateless IP/ICMP Translation Algorithm (SIIT)}},
+	pagetotal =	26,
+	year =		2000,
+	month =		feb,
+	abstract =	{This document specifies a transition mechanism algorithm in addition to the mechanisms already specified. {[}STANDARDS-TRACK{]}},
+}
+
+% SIIT更新
+@misc{RFC6145,
+	series =	{Request for Comments},
+	number =	6145,
+	howpublished =	{RFC 6145},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC6145},
+	url =		{https://rfc-editor.org/rfc/rfc6145.txt},
+        author =	{Xing Li and Fred Baker and Congxiao Bao},
+	title =		{{IP/ICMP Translation Algorithm}},
+	pagetotal =	33,
+	year =		2011,
+	month =		apr,
+	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 2765. {[}STANDARDS-TRACK{]}},
+}
+
+% 64:ff9b::/48の話
+@misc{RFC8215,
+	series =	{Request for Comments},
+	number =	8215,
+	howpublished =	{RFC 8215},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8215},
+	url =		{https://rfc-editor.org/rfc/rfc8215.txt},
+        author =	{Tore Anderson},
+	title =		{{Local-Use IPv4/IPv6 Translation Prefix}},
+	pagetotal =	7,
+	year =		2017,
+	month =		aug,
+	abstract =	{This document reserves the IPv6 prefix 64:ff9b:1::/48 for local use within domains that enable IPv4/IPv6 translation mechanisms.},
+}
+
+% Anycast
+@misc{RFC4786,
+	series =	{Request for Comments},
+	number =	4786,
+	howpublished =	{RFC 4786},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4786},
+	url =		{https://rfc-editor.org/rfc/rfc4786.txt},
+  author =	{Kurt Erik Lindqvist and Joe Abley},
+	title =		{{Operation of Anycast Services}},
+	pagetotal =	24,
+	year =		2006,
+	month =		dec,
+	abstract =	{As the Internet has grown, and as systems and networked services within enterprises have become more pervasive, many services with high availability requirements have emerged. These requirements have increased the demands on the reliability of the infrastructure on which those services rely. Various techniques have been employed to increase the availability of services deployed on the Internet. This document presents commentary and recommendations for distribution of services using anycast. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.},
 }
 
 
@@ -288,6 +378,7 @@ doi={10.1109/ITNEC.2016.7560347},
 ISSN={null},
 month={May}
 }
+
 
 
 %% IPv6以降技術まとめ。LinuxのNAT64シリーズの話もあるよ
