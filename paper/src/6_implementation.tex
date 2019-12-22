@@ -1,9 +1,44 @@
 \chapter{プロトコル設計と実装}
 \label{implementation}
-本章では，提案システムのメッセージ設計と実装について述べる．
+本章では，第\ref{proposal}章で述べた提案システムのメッセージ設計と実装について述べる．
 
-\section{実装内容}
 
+
+\section{BGPメッセージの設計}
+\subsection{要件}
+Dynamic EAMTに必要な属性は以下の3種
+\begin{itemize}
+    \item IPv4サービスアドレス \\
+    \item IPv6サービスアドレス \\
+    \item 変換プレフィックス \\
+\end{itemize}
+
+\subsection{実装}
+\subsubsection{アドレスファミリー}
+IPv6 ユニキャスト経路で実現
+\subsubsection{メッセージフォーマット}
+
+BGP UPDATE Messageのパケットを図で表す。
+
+\begin{itemize}
+    \item reachable\_NLRI \\
+    \item unreachable\_NLRI \\
+    \item NEXTHOP \\
+\end{itemize}
+
+
+\section{PoCの実装}
+
+\subsection{各コンポーネントの実装}
+refで述べたコンポーネントは以下の様にそれぞれ実装した．
+\subsubsection{BGPデーモン}
+BGPデーモンには，OSSのBGPデーモンであるGoBGPを利用する．gRPCでサービス連携が楽である．
+\subsubsection{SIIT}
+SIIT機構にはJoolを使う．Linux Netfilterで実装されていてどこでも持ってける．
+\subsection{EAMT制御機構}
+BGP Loc-RIBをwatchしてSIIT機構の変換テーブルを書き換える仕事をする．
+EAMT制御機構には手作りPythonスクリプトを使う
+表で使用ライブラリなどを書く．
 
 
 %%% Local Variables:
