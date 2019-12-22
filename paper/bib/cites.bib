@@ -480,3 +480,92 @@ month={Nov}
  publisher = {ACM},
  address = {New York, NY, USA},
 } 
+
+
+% TCP
+@misc{rfc793,
+	series =	{Request for Comments},
+	number =	793,
+	howpublished =	{RFC 793},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC0793},
+	url =		{https://rfc-editor.org/rfc/rfc793.txt},
+	title =		{{Transmission Control Protocol}},
+	pagetotal =	91,
+	year =		1981,
+	month =		sep,
+}
+% MP-BGP
+@misc{RFC4760,
+	series =	{Request for Comments},
+	number =	4760,
+	howpublished =	{RFC 4760},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4760},
+	url =		{https://rfc-editor.org/rfc/rfc4760.txt},
+        author =	{Tony J. Bates and Ravi Chandra and Yakov Rekhter and Dave Katz},
+	title =		{{Multiprotocol Extensions for BGP-4}},
+	pagetotal =	12,
+	year =		2007,
+	month =		jan,
+	abstract =	{This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.). The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. {[}STANDARDS-TRACK{]}},
+}
+
+
+% AFI https://www.iana.org/assignments/address-family-numbers/address-family-numbers.xml
+% SAFI https://www.iana.org/assignments/safi-namespace/safi-namespace.xhtml
+@misc{IANA_AFI,
+  title={Address Family Numbers},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/address-family-numbers/address-family-numbers.xml}},
+  note = {最終閲覧: 2019-12-21}
+}
+@misc{IANA_SAFI,
+  title={Subsequent Address Family Identifiers (SAFI) Parameters},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/safi-namespace/safi-namespace.xhtml}},
+  note = {最終閲覧: 2019-12-21}
+}
+
+% IPv6
+@misc{RFC8200,
+	series =	{Request for Comments},
+	number =	8200,
+	howpublished =	{RFC 8200},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8200},
+	url =		{https://rfc-editor.org/rfc/rfc8200.txt},
+        author =	{Dr. Steve E. Deering and Bob Hinden},
+	title =		{{Internet Protocol, Version 6 (IPv6) Specification}},
+	pagetotal =	42,
+	year =		2017,
+	month =		jul,
+	abstract =	{This document specifies version 6 of the Internet Protocol (IPv6). It obsoletes RFC 2460.},
+}
+
+% IBGPのスケーラビリティの話し
+@article{vutukuru2005construct,
+  title={How to construct a correct and scalable iBGP configuration},
+  author={Vutukuru, Mythili and Valiant, Paul and Kopparty, Swastik and Balakrishnan, Hari},
+  year={2005}
+}
+
+
+% ルートリフレクター
+@misc{RFC4456,
+	series =	{Request for Comments},
+	number =	4456,
+	howpublished =	{RFC 4456},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4456},
+	url =		{https://rfc-editor.org/rfc/rfc4456.txt},
+        author =	{Enke Chen and Tony J. Bates and Ravi Chandra},
+	title =		{{BGP Route Reflection: An Alternative to Full Mesh Internal BGP (IBGP)}},
+	pagetotal =	12,
+	year =		2006,
+	month =		apr,
+	abstract =	{The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as "route reflection" to alleviate the need for "full mesh" Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. {[}STANDARDS-TRACK{]}},
+}
+
