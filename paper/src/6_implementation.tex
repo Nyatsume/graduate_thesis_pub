@@ -10,6 +10,8 @@ Dynamic EAMTを実現するにあたって，EAMとして広告すべきに必�
 表\ref{table:eam_required}に各属性の情報を列記する．
 
 \begin{table}[h]
+    \label{table:eam_required}
+    \caption{EAMに必要な情報}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{cccc}
     \hline
@@ -19,8 +21,6 @@ Dynamic EAMTを実現するにあたって，EAMとして広告すべきに必�
     変換プレフィックス & IPv6 ネットワークアドレス(/96) &  & 64:ff9b::/96 \\ \hline
     \end{tabular}%
     }
-    \label{table:eam_required}
-    \caption{EAMに必要な情報}
 \end{table}
 
 \subsection{実装}
@@ -33,6 +33,8 @@ UPDATEメッセージ以外の扱いは標準的なBGPメッセージに準ず�
 
 
 \begin{table}[]
+    \label{table:bgp_eam}
+    \caption{BGP UPDATEメッセージにおける各パス属性}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{cllclc}
     \hline
@@ -48,8 +50,6 @@ UPDATEメッセージ以外の扱いは標準的なBGPメッセージに準ず�
     15 & MP\_UNREACH\_NLRI & \multicolumn{1}{c}{必須} & \multicolumn{3}{c}{MP\_REACH\_NLRIと同様} \\ \hline
     \end{tabular}%
     }
-    \label{table:bgp_eam}
-    \caption{BGP UPDATEメッセージにおける各パス属性}
 \end{table}
 
 \subsection{実装時に留意すべき事項}
