@@ -1,10 +1,67 @@
 \chapter{評価}
 \label{evaluation}
+本章では，第\ref{proposal}章及び第\ref{implementation}章で設計・実装に関して述べた本提案手法に関して，第\ref{issue:siit-dc_problems}節で指摘したSIIT-DCの課題に対して有効性があることに対して定量的に評価を行う．
 
-本章では，本研究の評価を行う
 
 
 \section{評価要件}
+SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で述べた事項が求められる．
+
+それらを定量的に評価するための指標・尺度について記述する．
+
+
+\subsection{BR間のEAMTの一貫性}
+SIIT-DCネットワークにおいて，各BRが一貫したEAMTを持つまでの時間を調べる．数を増やした場合に線形に変化するかどうか
+
+\subsubsection{変更追従性}
+サーバー構成が変更になった場合に，どれだけの時間でサービス提供が行えるかを計測する．
+
+\subsubsection{スケーラビリティ}
+表\ref{table:compare_approach}で示した定性評価により，本提案手法にスケーラビリティがあることがわかる．
+
+
+\section{実験環境}
+第\label{implementation:poc}項で記述したPoC実装を利用する．
+
+ネットワークエミュレータ環境として，GNS3を利用する．
+
+
+
+\section{実験シナリオ1: SIIT-DCネットワークの構築}
+このシナリオにおける，BRの数, サーバーの数を変数とした時に変化を調べる．
+
+\subsection{ネットワーク構成}
+図を張る． BRとサーバーは水平スケールさせる．
+
+
+\subsection{実験結果}
+EAMTが一貫するまでの時間を調べる．
+
+\subsection{考察}
+一貫性保持が成功．
+
+線形に変化しており，O(n)の十分なスケーラビリティがある．
+
+
+\section{実験シナリオ2: サーバーの構成変更}
+このシナリオにおける，BRの数, サーバーの数を変数とした時に変化を調べる．
+
+サーバーの削除からのFailover(LPで重み替え)
+
+
+
+\subsection{ネットワーク構成}
+図を張る． BRとサーバーは水平スケールさせる．
+
+\subsection{実験結果}
+追加したサーバー1台がサービス開始出来るまでの時間を，サーバー台数とBR台数が増えていった場合にも変わらず出来ることを証明．
+
+
+\subsection{考察}
+リニアに追従．
+
+線形に変化しており，O(n)の十分なスケーラビリティがある．
+
 
 %%% Local Variables:
 %%% mode: japanese-latex

@@ -63,6 +63,7 @@ BGPを利用したDynamic EAMTにおいて留意すべき事項を述べる．
 
 
 \section{PoCの実装}
+\label{implementation:poc}
 第\ref{evaluation}章で行う概念検証実験にもちいるPoC\footnote{Proof of Concept. 概念検証実装}について，各ノードで必要なコンポーネントとその役割及び具体的な実装について記述する．
 
 \begin{figure}[h]
@@ -74,6 +75,8 @@ BGPを利用したDynamic EAMTにおいて留意すべき事項を述べる．
 \end{figure}
 
 \subsection{各コンポーネントの実装}
+\label{implementation:poc:components}
+
 第\ref{proposal:network:nodes}項で述べたコンポーネントは以下の様にそれぞれ実装した．
 BRにおけるコンポーネントの関係を図\ref{fig:poc_implementation}に示す．
 
@@ -90,6 +93,7 @@ JoolはLinuxOSで利用できるNAT64/SIIT環境で，Lunux Netfilterによっ�
 EAMTの変更には専用のCLIコマンドを利用する．
 
 \subsubsection{EAMT制御機構}
+\label{implementation:poc:siit-manipulatord}
 BGP上で受信したLoc-RIBをEAMTに反映するために，EAMT制御機構"siit-manipulatord"を実装した．
 
 gRPCによってGoBGPのLoc-RIBの変化をJoolのCLIコマンドを利用してLinux NetFilter反映するほか、Translation Prefixの定義などSIITに必要な情報を管理する．
