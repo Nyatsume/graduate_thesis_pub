@@ -13,11 +13,19 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 \subsection{BR間のEAMTの一貫性}
 SIIT-DCネットワークにおいて，各BRが一貫したEAMTを持つまでの時間を調べる．数を増やした場合に線形に変化するかどうか
 
-\subsubsection{変更追従性}
+\subsection{変更追従性}
 サーバー構成が変更になった場合に，どれだけの時間でサービス提供が行えるかを計測する．
 
-\subsubsection{スケーラビリティ}
-表\ref{table:compare_approach}で示した定性評価により，本提案手法にスケーラビリティがあることがわかる．
+\subsection{スケーラビリティ}
+%ルートリフレクター部分は十分にスケールすることを示す．
+第\ref{proposal:compare}節で示したように，本提案手法はルートリフレクターを導入することにより，ネットワーク全体でのBGPコネクション数を低減出来ることがわかっている．
+本実験においてはネットワーク規模の拡大\footnote{IPv4サービスを提供するサーバーとBRがそれぞれ多くなった場合}がBR間のEAMTの一貫性と変更追従性の2指標に対して，どのような影響を及ぼすかを検証する．
+
+
+
+\section{想定するネットワークトポロジー}
+第\ref{issue:siit-dc-merit}節で述べたように，SIIT-DCは様々なネットワークトポロジーでの活用が可能である．
+
 
 
 \section{実験環境}
