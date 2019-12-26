@@ -1,9 +1,63 @@
+% IPv6 初めての標準
+@misc{RFC2460,
+	series =	{Request for Comments},
+	number =	2460,
+	howpublished =	{RFC 2460},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC2460},
+	url =		{https://rfc-editor.org/rfc/rfc2460.txt},
+  author =	{Bob Hinden and Dr. Steve E. Deering},
+	title =		{{Internet Protocol, Version 6 (IPv6) Specification}},
+	pagetotal =	39,
+	year =		1998,
+	month =		dec,
+	abstract =	{This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. {[}STANDARDS-TRACK{]}},
+}
+
+% SRv6
+@misc{RFC8402,
+	series =	{Request for Comments},
+	number =	8402,
+	howpublished =	{RFC 8402},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8402},
+	url =		{https://rfc-editor.org/rfc/rfc8402.txt},
+        author =	{Clarence Filsfils and Stefano Previdi and Les Ginsberg and Bruno Decraene and Stephane Litkowski and Rob Shakir},
+	title =		{{Segment Routing Architecture}},
+	pagetotal =	32,
+	year =		2018,
+	month =		jul,
+	abstract =	{Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called "segments". A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header.},
+}
+
+
+
+% 北口さんの論文
+@article{北口善明2017クライアント,
+  title={クライアント OS の IPv6 実装検証とネットワーク運用における課題},
+  author={北口善明 and 近堂徹 and 鈴田伊知郎 and 小林貴之 and 前野譲二 and others},
+  journal={研究報告インターネットと運用技術 (IOT)},
+  volume={2017},
+  number={13},
+  pages={1--8},
+  year={2017}
+}
 % Cisco Visual Index
 @misc{index2017global,
   title={Cisco Visual Networking Index: Forecast and Trends, 2017–2022 White Paper},
   author={Cisco},
   year={2017},
   note={\url{https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/white-paper-c11-738429.html}}
+}
+
+% IAB Statement on IPv6
+@misc{IAB_statement,
+  title={IAB Statement on IPv6},
+  author={Cindy Morgan},
+  publisher={IAB},
+  year={2016},
+  howpublished = {\url{https://www.iab.org/2016/11/07/iab-statement-on-ipv6/}},
+  note = {最終閲覧: 2019-12-17}
 }
 
 % JANOG 44
@@ -589,4 +643,19 @@ month={Nov}
   pages={1},
   year={2016},
   publisher={Modern Education and Computer Science Press}
+}
+
+% iBGP RR が実はセッションを削減できるけどBGPupdateのサイズの評価手法
+@INPROCEEDINGS{6838346,
+  author={E. {Gutiérrez} and D. {Agriel} and E. {Saenz} and E. {Grampín}},
+  booktitle={2014 IEEE Network Operations and Management Symposium (NOMS)},
+  title={RRLOC: A tool for iBGP Route Reflector topology planning and experimentation},
+  year={2014},
+  volume={},
+  number={},
+  pages={1-4},
+  keywords={Internet;protocols;telecommunication network routing;telecommunication network topology;iBGP route reflector topology planning;RRLOC;iBGP route reflector topology experimentation;global routing system;Internet;routing table size;BGP protocol;inter-AS connectivity patterns;RR;route reflectors;global scalability problem;AS topology repositories;border gateway protocol;Topology;Routing;Network topology;Scalability;Algorithm design and analysis;Internet;Protocols;iBGP Toplogy;Route Reflectors;Scalability},
+  doi={10.1109/NOMS.2014.6838346},
+  ISSN={2374-9709},
+  month={May},
 }

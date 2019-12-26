@@ -74,9 +74,10 @@ BGPは自律システム間の経路交換プロトコルとしてインター�
 
 図\ref{fig:proposal_method_network}本提案手法の各要素の関係を示す．
 
-BR数を$N$，サーバー数を$M$とした，ルートリフレクターを利用した本提案手法での必要なBGPコネクション数$C_a$は以下の様に表現できる．
+BR数を$N$，サーバー数を$M$とした，ルートリフレクターを利用した本提案手法での必要なBGPコネクション数$C_a$は式\ref{eq:proposal_network}のように表現できる．
 
 \begin{equation}
+    \label{eq:proposal_network}
     C_a = M \cdot N
 \end{equation}
 
@@ -105,7 +106,7 @@ IPv4サービス提供サーバーでは以下の2つの機構が求められる
 
 
 \section{ルートリフレクターを活用したネットワーク設計}
-
+\label{proposal:network_rr}
 \begin{figure}[h]
     \begin{center}
     \includegraphics[width=15cm,pagebox=cropbox,clip]{img/proposal_method_network_rr.pdf}
@@ -118,16 +119,17 @@ IPv4サービス提供サーバーでは以下の2つの機構が求められる
 
 ルートリフレクターとは，Originator-IDと呼ばれる特殊な属性をAdj-RIB-Outに付与することでルートループを防ぎながら，iBGPピアから受信した経路を他のiBGPに対して広告する特殊なBGPスピーカーである\cite{RFC4456}．ルートリフレクターはiBGPのコネクション数を削減するために広く利用されている．
 
-ルートリフレクターを複数設置することで，負荷分散・冗長化構成を容易に実現することが出来る．なお，その際ルートリフレクター間はフルメッシュにてBGPコネクションを確立する必要がある．
+ルートリフレクターを複数設置することで，負荷分散・冗長化構成を容易に実現することが出来る．一般的にはルートリフレクター間はフルメッシュでのBGPコネクションを確立する設計を行うが，
+Gutiérrezらによればツリー型のBGPコネクション関係を一部で選択することにより，よりルートリフレクターに掛かる負荷出来ることが明らかになっている\cite{6838346}．
 
+BR数を$N$，サーバー数を$M$，ルートリフレクターの数を$L$とした，ルートリフレクターを利用した本提案手法での必要なBGPコネクション数$C_b$は式\ref{eq:proposal_network_rr}のように表現できる．なおルートリフレクター間のBGPコネクションはフルメッシュを想定している．
+第\ref{proposal:network}節で述べた基本的なネットワーク設計を行う場合と比較して，SIIT-DCネットワークが大きくなった場合にBGPコネクションが大幅に削減できることがわかる．
 
-BR数を$N$，サーバー数を$M$，ルートリフレクターの数を$L$とした，ルートリフレクターを利用した本提案手法での必要なBGPコネクション数$C_b$は以下の様に表現できる．
-これはSIIT-DCネットワークが大きくなった場合に，フルメッシュ構成での\ref{fig:proposal_method_network_rr}と比較して，ネットワークへの負荷軽減に大きく繋がる．
 
 \begin{equation}
-    C_b = \frac{L(2M + 2N + L - 1)}{2} 
+    C_b = \frac{L(2M + 2N + L - 1)}{2}
+    \label{eq:proposal_network_rr}
 \end{equation}
-
 
 \subsection{各ノードの役割と機能要件}
 \subsubsection{BR及びIPv4提供サーバー}
@@ -139,6 +141,7 @@ BR及びIPv4サービス提供サーバーは，ルートリフレクターと�
 
 
 \section{各アプローチとの比較}
+\label{proposal:compare}
 第\ref{consideration:approach}節で検討した各アプローチと本提案手法を，第\label{consideration:points}節で挙げた各性能要件に関して比較する．
 
 表\ref{table:compare_approach}にそれぞれの項目における比較結果を表す．なお，コントローラーもしくはルートリフレクターの導入数を$L$，サーバー数を$M$，BRの数を$N$としている．
