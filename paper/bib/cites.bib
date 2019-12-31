@@ -1,16 +1,466 @@
+% IPv6 初めての標準
+@misc{RFC2460,
+	series =	{Request for Comments},
+	number =	2460,
+	howpublished =	{RFC 2460},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC2460},
+	url =		{https://rfc-editor.org/rfc/rfc2460.txt},
+  author =	{Bob Hinden and Dr. Steve E. Deering},
+	title =		{{Internet Protocol, Version 6 (IPv6) Specification}},
+	pagetotal =	39,
+	year =		1998,
+	month =		dec,
+	abstract =	{This document specifies version 6 of the Internet Protocol (IPv6), also sometimes referred to as IP Next Generation or IPng. {[}STANDARDS-TRACK{]}},
+}
+
+% SRv6
+@misc{RFC8402,
+	series =	{Request for Comments},
+	number =	8402,
+	howpublished =	{RFC 8402},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8402},
+	url =		{https://rfc-editor.org/rfc/rfc8402.txt},
+        author =	{Clarence Filsfils and Stefano Previdi and Les Ginsberg and Bruno Decraene and Stephane Litkowski and Rob Shakir},
+	title =		{{Segment Routing Architecture}},
+	pagetotal =	32,
+	year =		2018,
+	month =		jul,
+	abstract =	{Segment Routing (SR) leverages the source routing paradigm. A node steers a packet through an ordered list of instructions, called "segments". A segment can represent any instruction, topological or service based. A segment can have a semantic local to an SR node or global within an SR domain. SR provides a mechanism that allows a flow to be restricted to a specific topological path, while maintaining per-flow state only at the ingress node(s) to the SR domain. SR can be directly applied to the MPLS architecture with no change to the forwarding plane. A segment is encoded as an MPLS label. An ordered list of segments is encoded as a stack of labels. The segment to process is on the top of the stack. Upon completion of a segment, the related label is popped from the stack. SR can be applied to the IPv6 architecture, with a new type of routing header. A segment is encoded as an IPv6 address. An ordered list of segments is encoded as an ordered list of IPv6 addresses in the routing header. The active segment is indicated by the Destination Address (DA) of the packet. The next active segment is indicated by a pointer in the new routing header.},
+}
+
+
+
+% 北口さんの論文
+@article{北口善明2017クライアント,
+  title={クライアント OS の IPv6 実装検証とネットワーク運用における課題},
+  author={北口善明 and 近堂徹 and 鈴田伊知郎 and 小林貴之 and 前野譲二 and others},
+  journal={研究報告インターネットと運用技術 (IOT)},
+  volume={2017},
+  number={13},
+  pages={1--8},
+  year={2017}
+}
+% Cisco Visual Index
+@misc{index2017global,
+  title={Cisco Visual Networking Index: Forecast and Trends, 2017–2022 White Paper},
+  author={Cisco},
+  year={2017},
+  note={\url{https://www.cisco.com/c/en/us/solutions/collateral/service-provider/visual-networking-index-vni/white-paper-c11-738429.html}}
+}
+
+% IAB Statement on IPv6
+@misc{IAB_statement,
+  title={IAB Statement on IPv6},
+  author={Cindy Morgan},
+  publisher={IAB},
+  year={2016},
+  howpublished = {\url{https://www.iab.org/2016/11/07/iab-statement-on-ipv6/}},
+  note = {最終閲覧: 2019-12-17}
+}
+
+% JANOG 44
+@conference{JANOG44_robust,
+  author={石田慶樹 and 吉田友哉 and 西田圭},
+  title={日本のインターネットは本当にロバストになったのか？},
+  booktitle={JANOG 44 ミーティング},
+  year={2019},
+  note={\url{https://www.janog.gr.jp/meeting/janog44/application/files/7715/6577/5523/janog44-robust-ishida-01.pdf}}
+}
+% ビジネスの継続性のためには災害と付き合わなくちゃいけないよねっていうことが言いたいだけ．
+@article{alonso2001business,
+  title={Business continuity plans for disaster response},
+  author={Alonso, Felipe and Boucher, John},
+  journal={The CPA Journal},
+  volume={71},
+  number={11},
+  pages={60},
+  year={2001},
+  publisher={New York State Society of Certified Public Accountants}
+}
+
+% IANA address allocation v4 https://www.iana.org/assignments/ipv4-recovered-address-space/ipv4-recovered-address-space.xhtml
+@misc{IANA_allocation,
+  title={Internet Protocol Version 4 Address Space},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/ipv4-address-space/ipv4-address-space.xml}},
+  note = {最終閲覧: 2019-12-17}
+}
+
+% IANA address allocation v6 https://www.iana.org/assignments/ipv4-recovered-address-space/ipv4-recovered-address-space.xhtml
+@misc{IANA_allocation_v6,
+  title={Internet Protocol Version 6 Address Space},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/ipv6-address-space/ipv6-address-space.xhtml}},
+  note = {最終閲覧: 2019-12-17}
+}
+
+%おなじみのRIRはexaustedなグラフ．
+@misc{potaroo_IPv4,
+  author = {potaroo},
+  title = {IPv4 Address Report},
+  howpublished = {\url{https://ipv4.potaroo.net/}},
+  note = {最終閲覧: 2019-12-17}
+}
+
+%IPv4枯渇後に掛かる金
+@article{howard2013internet,
+  title={Internet access pricing in a post-IPv4 runout world},
+  author={Howard, Lee and Cable, Time Warner},
+  journal={White Paper},
+  year={2013}
+}
+
+% 2001年Ipv6普及の方法論
+@article{durand2001deploying,
+  title={Deploying ipv6},
+  author={Durand, Alain},
+  journal={IEEE Internet Computing},
+  volume={5},
+  number={1},
+  pages={79--81},
+  year={2001},
+  publisher={IEEE}
+}
+
+%IPv6普及率
+@misc{Google_IPv6_statistics,
+  author = {Google},
+  title = {IPv6 statistics},
+  howpublished = {\url{https://www.google.com/intl/en/ipv6/statistics.html}},
+  note = {最終閲覧: 2019-12-18}
+}
+
+% SIIT-DC
+@misc{RFC7755,
+        series =        {Request for Comments},
+        number =        7755,
+        howpublished =  {RFC 7755},
+        publisher =     {RFC Editor},
+        doi =           {10.17487/RFC7755},
+        url =           {https://rfc-editor.org/rfc/rfc7755.txt},
+        author =        {Tore Anderson},
+        title =         {{SIIT-DC: Stateless IP/ICMP Translation for IPv6 Data Center Environments}},
+        pagetotal =     24,
+        year =          2016,
+        month =         feb,
+        abstract =      {This document describes the use of the Stateless IP/ICMP Translation Algorithm (SIIT) in an IPv6 Internet Data Center (IDC). In this deployment model, traffic from legacy IPv4-only clients on the Internet is translated to IPv6 upon reaching the IDC operator's network infrastructure. From that point on, it may be treated the same as traffic from native IPv6 end users. The IPv6 endpoints may be numbered using arbitrary (non-IPv4-translatable) IPv6 addresses. This facilitates a single-stack IPv6-only network infrastructure, as well as efficient utilization of public IPv4 addresses. The primary audience is IDC operators who are deploying IPv6, running out of available IPv4 addresses, and/or feeling that dual stack causes undesirable operational complexity.}
+}
+
+% SIIT-DC Dual Translation Mode
+@misc{RFC7756,
+	series =	{Request for Comments},
+	number =	7756,
+	howpublished =	{RFC 7756},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC7756},
+	url =		{https://rfc-editor.org/rfc/rfc7756.txt},
+        author =	{Tore Anderson and S.J.M. Steffann},
+	title =		{{Stateless IP/ICMP Translation for IPv6 Internet Data Center Environments (SIIT-DC): Dual Translation Mode}},
+	pagetotal =	17,
+	year =		2016,
+	month =		feb,
+	abstract =	{This document describes an extension of the Stateless IP/ICMP Translation for IPv6 Internet Data Center Environments (SIIT-DC) architecture, which allows applications, protocols, or nodes that are incompatible with IPv6 and/or Network Address Translation to operate correctly with SIIT-DC. This is accomplished by introducing a new component called an SIIT-DC Edge Relay, which reverses the translations made by an SIIT-DC Border Relay. The application and/or node is thus provided with seemingly native IPv4 connectivity that provides end-to-end address transparency. The reader is expected to be familiar with the SIIT-DC architecture described in RFC 7755.},
+}
+
+
+% EAM
+@misc{RFC7757,
+  series =        {Request for Comments},
+  number =        7757,
+  howpublished =  {RFC 7757},
+  publisher =     {RFC Editor},
+  doi =           {10.17487/RFC7757},
+  url =           {https://rfc-editor.org/rfc/rfc7757.txt},
+  author =        {Tore Anderson and Alberto Leiva},
+  title =         {{Explicit Address Mappings for Stateless IP/ICMP Translation}},
+  pagetotal =     19,
+  year =          2016,
+  month =         feb,
+  abstract =      {This document extends the Stateless IP/ICMP Translation Algorithm (SIIT) with an Explicit Address Mapping (EAM) algorithm and formally updates RFC 6145. The EAM algorithm facilitates stateless IP/ICMP translation between arbitrary (non-IPv4-translatable) IPv6 endpoints and IPv4.}
+}
+
+% BGP4
+@misc{RFC4271,
+	series =	{Request for Comments},
+	number =	4271,
+	howpublished =	{RFC 4271},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4271},
+	url =		{https://rfc-editor.org/rfc/rfc4271.txt},
+        author =	{Yakov Rekhter and Susan Hares and Tony Li},
+	title =		{{A Border Gateway Protocol 4 (BGP-4)}},
+	pagetotal =	104,
+	year =		2006,
+	month =		jan,
+	abstract =	{This document discusses the Border Gateway Protocol (BGP), which is an inter-Autonomous System routing protocol. The primary function of a BGP speaking system is to exchange network reachability information with other BGP systems. This network reachability information includes information on the list of Autonomous Systems (ASes) that reachability information traverses. This information is sufficient for constructing a graph of AS connectivity for this reachability from which routing loops may be pruned, and, at the AS level, some policy decisions may be enforced. BGP-4 provides a set of mechanisms for supporting Classless Inter-Domain Routing (CIDR). These mechanisms include support for advertising a set of destinations as an IP prefix, and eliminating the concept of network "class" within BGP. BGP-4 also introduces mechanisms that allow aggregation of routes, including aggregation of AS paths. This document obsoletes RFC 1771. {[}STANDARDS-TRACK{]}}
+}
+
+% IP/ICMP Translation Algorithm
+@misc{RFC7915,
+	series =	{Request for Comments},
+	number =	7915,
+	howpublished =	{RFC 7915},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC7915},
+	url =		{https://rfc-editor.org/rfc/rfc7915.txt},
+        author =	{Congxiao Bao and Xing Li and Fred Baker and Tore Anderson and Fernando Gont},
+	title =		{{IP/ICMP Translation Algorithm}},
+	pagetotal =	34,
+	year =		2016,
+	month =		jun,
+	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 6145.}
+}
+
+% IPv4aaS
+@misc{RFC8585,
+	series =	{Request for Comments},
+	number =	8585,
+	howpublished =	{RFC 8585},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8585},
+	url =		{https://rfc-editor.org/rfc/rfc8585.txt},
+  author =	{Jordi Palet and Hans M.-H. Liu and Masanobu Kawashima},
+	title =		{{Requirements for IPv6 Customer Edge Routers to Support IPv4-as-a-Service}},
+	pagetotal =	21,
+	year =		2019,
+	month =		may,
+	abstract =	{This document specifies the IPv4 service continuity requirements for IPv6 Customer Edge (CE) routers that are provided either by the service provider or by vendors who sell through the retail market. Specifically, this document extends the basic requirements for IPv6 CE routers as described in RFC 7084 to allow the provisioning of IPv6 transition services for the support of IPv4-as-a-Service (IPv4aaS) by means of new transition mechanisms. The document only covers IPv4aaS, i.e., transition technologies for delivering IPv4 in IPv6-only access networks. IPv4aaS is necessary because there aren't sufficient IPv4 addresses available for every possible customer/ device. However, devices or applications in the customer Local Area Networks (LANs) may be IPv4-only or IPv6-only and still need to communicate with IPv4-only services on the Internet.}
+}
+
+% Scale-Out Networking
+
+@ARTICLE{5550998,
+  author={A. {Vahdat} and M. {Al-Fares} and N. {Farrington} and R. N. {Mysore} and G. {Porter} and S. {Radhakrishnan}},
+  journal={IEEE Micro},
+  title={Scale-Out Networking in the Data Center},
+  year={2010},
+  volume={30},
+  number={4},
+  pages={29-41},
+  keywords={computer architecture;computer centres;computer network management;data centre;scale-out architecture;incremental scalability;UCSD Triton network architecture;network managing;plug-and-play virtual fabric;Optical switches;Bandwidth;Topology;Network topology;Servers;Biological system modeling;Computational modeling;datacenter network architecture;scale-out networking;merchant silicon;L2 fabric;datacenter routing;network fault-tolerance.},
+  doi={10.1109/MM.2010.72},
+  ISSN={1937-4143},
+  month={July}
+}
+
+% WEB Loadbalancer 比較
+@Article{Gilly2011,
+  author="Gilly, Katja
+  and Juiz, Carlos
+  and Puigjaner, Ramon",
+  title="An up-to-date survey in web load balancing",
+  journal="World Wide Web",
+  year="2011",
+  month="Mar",
+  day="01",
+  volume="14",
+  number="2",
+  pages="105--131",
+  abstract="This survey is an up-to-date state-of-the-art in Web load balancing mechanisms that includes all the possible classifications and focuses on the advantages of using load balancing solutions to increase the performance of the Web system. A general description of the Web load balancing solutions is included and organised by differentiating the OSI protocol stack layer the load balancing is based on. The most important request distributing polices that are proposed in the literature are also included. This article summarises all previous surveys on the Web load balancing subject and updates the state-of-the-art with the most recent load balancing  proposals.",
+  issn="1573-1413",
+  doi="10.1007/s11280-010-0101-5",
+  url="https://doi.org/10.1007/s11280-010-0101-5"
+}
+
+% Google Maglev
+@inproceedings{Google_LB,
+  title	= {Maglev: A Fast and Reliable Software Network Load Balancer},
+  author	= {Daniel E. Eisenbud and Cheng Yi and Carlo Contavalli and Cody Smith and Roman Kononov and Eric Mann-Hielscher and Ardas Cilingiroglu and Bin Cheyney and Wentao Shang and Jinnah Dylan Hosein},
+  year	= {2016},
+  URL	= {https://www.usenix.org/conference/nsdi16/technical-sessions/presentation/eisenbud},
+  booktitle	= {13th USENIX Symposium on Networked Systems Design and Implementation (NSDI 16)},
+  pages	= {523--535},
+  address	= {Santa Clara, CA}
+}
+
+% Facebook LB
+@conference {Facebook_LB,
+  author = {Patrick Shuff},
+  title = {Building A Billion User Load Balancer},
+  year = {2015},
+  address = {Dublin},
+  publisher = {{USENIX} Association},
+  month = may,
+}
+
+% IPv4overIPv6 compare
+@INPROCEEDINGS{6799698,
+  author={N. {Chuangchunsong} and S. {Kamolphiwong} and T. {Kamolphiwong} and R. {Elz} and P. {Pongpaibool}},
+  booktitle={The International Conference on Information Networking 2014 (ICOIN2014)},
+  title={Performance evaluation of IPv4/IPv6 transition mechanisms: IPv4-in-IPv6 tunneling techniques},
+  year={2014},
+  volume={},
+  number={},
+  pages={238-243},
+  keywords={computer network reliability;delays;Internet;IP networks;quality of service;IPv4-IPv6 transition mechanisms;IPv4-in-IPv6 tunneling techniques;IPv4 address space;Internet service providers;ISP;IPv4-IPv6 migration-transition tools;DS-lite;intracommunication reliability;quality-of-service;QoS;intercommunication reliability;Delays;Ports (Computers);Tunneling;Time factors;Routing;Reliability;IP networks;IPv6;DS-Lite;4over6;4rd;IPv4/IPv6 transition},
+  doi={10.1109/ICOIN.2014.6799698},
+  ISSN={2332-5658},
+  month={Feb},
+}
+
+% 64:ff9b::/96を最初に定義． 現在は変換方法としてだけ機能
+@misc{RFC6052,
+	series =	{Request for Comments},
+	number =	6052,
+	howpublished =	{RFC 6052},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC6052},
+	url =		{https://rfc-editor.org/rfc/rfc6052.txt},
+        author =	{Xing Li and Mohamed Boucadair and Christian Huitema and Marcelo Bagnulo and Congxiao Bao},
+	title =		{{IPv6 Addressing of IPv4/IPv6 Translators}},
+	pagetotal =	18,
+	year =		2010,
+	month =		oct,
+	abstract =	{This document discusses the algorithmic translation of an IPv6 address to a corresponding IPv4 address, and vice versa, using only statically configured information. It defines a well-known prefix for use in algorithmic translations, while allowing organizations to also use network-specific prefixes when appropriate. Algorithmic translation is used in IPv4/IPv6 translators, as well as other types of proxies and gateways (e.g., for DNS) used in IPv4/IPv6 scenarios. {[}STANDARDS-TRACK{]}},
+}
+
+% ECMP
+@misc{rfc2992,
+	series =	{Request for Comments},
+	number =	2992,
+	howpublished =	{RFC 2992},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC2992},
+	url =		{https://rfc-editor.org/rfc/rfc2992.txt},
+        author =	{Christian Hopps},
+	title =		{{Analysis of an Equal-Cost Multi-Path Algorithm}},
+	pagetotal =	8,
+	year =		2000,
+	month =		nov,
+	abstract =	{Equal-cost multi-path (ECMP) is a routing technique for routing packets along multiple paths of equal cost. The forwarding engine identifies paths by next-hop. When forwarding a packet the router must decide which next-hop (path) to use. This document gives an analysis of one method for making that decision. The analysis includes the performance of the algorithm and the disruption caused by changes to the set of next-hops. This memo provides information for the Internet community.}
+}
+
+% SIIT初出
+@misc{RFC2765,
+	series =	{Request for Comments},
+	number =	2765,
+	howpublished =	{RFC 2765},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC2765},
+	url =		{https://rfc-editor.org/rfc/rfc2765.txt},
+        author =	{Erik Nordmark},
+	title =		{{Stateless IP/ICMP Translation Algorithm (SIIT)}},
+	pagetotal =	26,
+	year =		2000,
+	month =		feb,
+	abstract =	{This document specifies a transition mechanism algorithm in addition to the mechanisms already specified. {[}STANDARDS-TRACK{]}},
+}
+
+% SIIT更新
+@misc{RFC6145,
+	series =	{Request for Comments},
+	number =	6145,
+	howpublished =	{RFC 6145},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC6145},
+	url =		{https://rfc-editor.org/rfc/rfc6145.txt},
+        author =	{Xing Li and Fred Baker and Congxiao Bao},
+	title =		{{IP/ICMP Translation Algorithm}},
+	pagetotal =	33,
+	year =		2011,
+	month =		apr,
+	abstract =	{This document describes the Stateless IP/ICMP Translation Algorithm (SIIT), which translates between IPv4 and IPv6 packet headers (including ICMP headers). This document obsoletes RFC 2765. {[}STANDARDS-TRACK{]}},
+}
+% NAT64
+@misc{rfc6146,
+	series =	{Request for Comments},
+	number =	6146,
+	howpublished =	{RFC 6146},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC6146},
+	url =		{https://rfc-editor.org/rfc/rfc6146.txt},
+        author =	{Philip Matthews and Iljitsch van Beijnum and Marcelo Bagnulo},
+	title =		{{Stateful NAT64: Network Address and Protocol Translation from IPv6 Clients to IPv4 Servers}},
+	pagetotal =	45,
+	year =		2011,
+	month =		apr,
+	abstract =	{This document describes stateful NAT64 translation, which allows IPv6-only clients to contact IPv4 servers using unicast UDP, TCP, or ICMP. The public IPv4 address can be shared among several IPv6-only clients. When the stateful NAT64 is used in conjunction with DNS64 no changes are usually required in the IPv6 client or the IPv4 server.},
+}
+
+
+
+% 64:ff9b::/48の話
+@misc{RFC8215,
+	series =	{Request for Comments},
+	number =	8215,
+	howpublished =	{RFC 8215},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8215},
+	url =		{https://rfc-editor.org/rfc/rfc8215.txt},
+        author =	{Tore Anderson},
+	title =		{{Local-Use IPv4/IPv6 Translation Prefix}},
+	pagetotal =	7,
+	year =		2017,
+	month =		aug,
+	abstract =	{This document reserves the IPv6 prefix 64:ff9b:1::/48 for local use within domains that enable IPv4/IPv6 translation mechanisms.},
+}
+
+% Anycast
+@misc{RFC4786,
+	series =	{Request for Comments},
+	number =	4786,
+	howpublished =	{RFC 4786},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4786},
+	url =		{https://rfc-editor.org/rfc/rfc4786.txt},
+  author =	{Kurt Erik Lindqvist and Joe Abley},
+	title =		{{Operation of Anycast Services}},
+	pagetotal =	24,
+	year =		2006,
+	month =		dec,
+	abstract =	{As the Internet has grown, and as systems and networked services within enterprises have become more pervasive, many services with high availability requirements have emerged. These requirements have increased the demands on the reliability of the infrastructure on which those services rely. Various techniques have been employed to increase the availability of services deployed on the Internet. This document presents commentary and recommendations for distribution of services using anycast. This document specifies an Internet Best Current Practices for the Internet Community, and requests discussion and suggestions for improvements.},
+}
+
+
+% human errorが大きな割合を占めてるというのを探すだけで30分掛かってキレそう
+
+NPO 日本ネットワークセキュリティ協会(JNSA):2013 年情報セキュリティインシデントに関する調査報告書—個 人情報漏えい編，第 1.1 版，入手先 ⟨http://www.jnsa.org/ result/incident/data/2013incident survey ver1.1.pdf⟩ (参照 2015-01-08).
+@misc{human_error,
+  title={情報セキュリティインシデントに関する調査報告書},
+  author={NPO 日本ネットワークセキュリティ協会(JNSA)},
+  year={2018},
+  howpublished = {\url{https://www.jnsa.org/result/incident/2018.html}},
+  note = {最終閲覧: 2019-12-21}
+}
+
+& HA構成
+@misc{gadir2005high,
+  title={High-availability cluster virtual server system},
+  author={Gadir, Omar MA and Subbanna, Kartik and Vayyala, Ananda R and Shanmugam, Hariprasad and Bodas, Amod P and Tripathy, Tarun Kumar and Indurkar, Ravi S and Rao, Kurma H},
+  year={2005},
+  month=sep # "~13",
+  publisher={Google Patents},
+  note={US Patent 6,944,785}
+}
+
+
 %% SDNでIPv6Accessを提供する的な論文
 @INPROCEEDINGS{6858474,
-	author={W. {Xia} and T. {Tsou} and D. {Lopez} and F. {Lu} and Q. {Sun} and W. {Feng} and K. {Hu} and H. {Xie}},
-	booktitle={Proceedings of the 2014 ITU kaleidoscope academic conference: Living in a converged world - Impossible without standards?},
-	title={A software defined approach to unified IPv6 transition},
-	year={2014},
-	volume={},
-	number={},
-	pages={9-13},
-	keywords={Internet;IP networks;transport protocols;software defined approach;unified IPv6 transition;IPv4 address space;end-to-end network upgrades;transition protocols;Software;Internet;Tunneling;Protocols;Hardware;Process control;Complexity theory;software defined networking;IPv6;IPv4;OpenFlow},
-	doi={10.1109/Kaleidoscope.2014.6858474},
-	ISSN={null},
-	month={June}
+  author={W. {Xia} and T. {Tsou} and D. {Lopez} and F. {Lu} and Q. {Sun} and W. {Feng} and K. {Hu} and H. {Xie}},
+  booktitle={Proceedings of the 2014 ITU kaleidoscope academic conference: Living in a converged world - Impossible without standards?},
+  title={A software defined approach to unified IPv6 transition},
+  year={2014},
+  volume={},
+  number={},
+  pages={9-13},
+  keywords={Internet;IP networks;transport protocols;software defined approach;unified IPv6 transition;IPv4 address space;end-to-end network upgrades;transition protocols;Software;Internet;Tunneling;Protocols;Hardware;Process control;Complexity theory;software defined networking;IPv6;IPv4;OpenFlow},
+  doi={10.1109/Kaleidoscope.2014.6858474},
+  ISSN={null},
+  month={June}
+}
+
+% Pull型で監視するSDN
+@inproceedings{chowdhury2014payless,
+  title={Payless: A low cost network monitoring framework for software defined networks},
+  author={Chowdhury, Shihabur Rahman and Bari, Md Faizul and Ahmed, Reaz and Boutaba, Raouf},
+  booktitle={2014 IEEE Network Operations and Management Symposium (NOMS)},
+  pages={1--9},
+  year={2014},
+  organization={IEEE}
 }
 
 %% OpenFlowでIPv4/IPv6変換を実現する手法が書いている
@@ -29,6 +479,9 @@ month={May}
 }
 
 
+
+
+
 %% IPv6以降技術まとめ。LinuxのNAT64シリーズの話もあるよ
 @INPROCEEDINGS{8240145,
 author={J. M. V. {Ruiz} and C. S. {Cardenas} and J. L. M. {Tapia}},
@@ -41,4 +494,168 @@ pages={1-6},
 keywords={IP networks;telecommunication network topology;topologies;translation mechanisms;DNS64;NAT64;DHCPv6;IPv6 transition mechanisms;virtual lab;IPv6 networks;Linux;Tools;Virtualization;Protocols;Network topology;Tunneling;Relays;IPv6;transition mechanisms;virtualization;hybrid network addressing},
 doi={10.1109/LATINCOM.2017.8240145},
 ISSN={null},
-month={Nov}}
+month={Nov}
+}
+
+
+% SDNまとめ
+@misc{RFC7426,
+	series =	{Request for Comments},
+	number =	7426,
+	howpublished =	{RFC 7426},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC7426},
+	url =		{https://rfc-editor.org/rfc/rfc7426.txt},
+        author =	{Evangelos Haleplidis and Kostas Pentikousis and Spyros Denazis and Jamal Hadi Salim and David Meyer and Odysseas Koufopavlou},
+	title =		{{Software-Defined Networking (SDN): Layers and Architecture Terminology}},
+	pagetotal =	35,
+	year =		2015,
+	month =		jan,
+	abstract =	{Software-Defined Networking (SDN) refers to a new approach for network programmability, that is, the capacity to initialize, control, change, and manage network behavior dynamically via open interfaces. SDN emphasizes the role of software in running networks through the introduction of an abstraction for the data forwarding plane and, by doing so, separates it from the control plane. This separation allows faster innovation cycles at both planes as experience has already shown. However, there is increasing confusion as to what exactly SDN is, what the layer structure is in an SDN architecture, and how layers interface with each other. This document, a product of the IRTF Software-Defined Networking Research Group (SDNRG), addresses these questions and provides a concise reference for the SDN research community based on relevant peer-reviewed literature, the RFC series, and relevant documents by other standards organizations.},
+}
+
+
+% CAP定理
+@article{Gilbert:2002:BCF:564585.564601,
+ author = {Gilbert, Seth and Lynch, Nancy},
+ title = {Brewer's Conjecture and the Feasibility of Consistent, Available, Partition-tolerant Web Services},
+ journal = {SIGACT News},
+ issue_date = {June 2002},
+ volume = {33},
+ number = {2},
+ month = jun,
+ year = {2002},
+ issn = {0163-5700},
+ pages = {51--59},
+ numpages = {9},
+ url = {http://doi.acm.org/10.1145/564585.564601},
+ doi = {10.1145/564585.564601},
+ acmid = {564601},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+} 
+
+
+% TCP
+@misc{rfc793,
+	series =	{Request for Comments},
+	number =	793,
+	howpublished =	{RFC 793},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC0793},
+	url =		{https://rfc-editor.org/rfc/rfc793.txt},
+	title =		{{Transmission Control Protocol}},
+	pagetotal =	91,
+	year =		1981,
+	month =		sep,
+}
+% MP-BGP
+@misc{RFC4760,
+	series =	{Request for Comments},
+	number =	4760,
+	howpublished =	{RFC 4760},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4760},
+	url =		{https://rfc-editor.org/rfc/rfc4760.txt},
+        author =	{Tony J. Bates and Ravi Chandra and Yakov Rekhter and Dave Katz},
+	title =		{{Multiprotocol Extensions for BGP-4}},
+	pagetotal =	12,
+	year =		2007,
+	month =		jan,
+	abstract =	{This document defines extensions to BGP-4 to enable it to carry routing information for multiple Network Layer protocols (e.g., IPv6, IPX, L3VPN, etc.). The extensions are backward compatible - a router that supports the extensions can interoperate with a router that doesn't support the extensions. {[}STANDARDS-TRACK{]}},
+}
+
+
+% AFI https://www.iana.org/assignments/address-family-numbers/address-family-numbers.xml
+% SAFI https://www.iana.org/assignments/safi-namespace/safi-namespace.xhtml
+@misc{IANA_AFI,
+  title={Address Family Numbers},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/address-family-numbers/address-family-numbers.xml}},
+  note = {最終閲覧: 2019-12-21}
+}
+@misc{IANA_SAFI,
+  title={Subsequent Address Family Identifiers (SAFI) Parameters},
+  author={IANA},
+  year={2019},
+  howpublished = {\url{https://www.iana.org/assignments/safi-namespace/safi-namespace.xhtml}},
+  note = {最終閲覧: 2019-12-21}
+}
+
+% IPv6
+@misc{RFC8200,
+	series =	{Request for Comments},
+	number =	8200,
+	howpublished =	{RFC 8200},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC8200},
+	url =		{https://rfc-editor.org/rfc/rfc8200.txt},
+        author =	{Dr. Steve E. Deering and Bob Hinden},
+	title =		{{Internet Protocol, Version 6 (IPv6) Specification}},
+	pagetotal =	42,
+	year =		2017,
+	month =		jul,
+	abstract =	{This document specifies version 6 of the Internet Protocol (IPv6). It obsoletes RFC 2460.},
+}
+
+% IBGPのスケーラビリティの話し
+@article{vutukuru2005construct,
+  title={How to construct a correct and scalable iBGP configuration},
+  author={Vutukuru, Mythili and Valiant, Paul and Kopparty, Swastik and Balakrishnan, Hari},
+  year={2005}
+}
+
+
+% ルートリフレクター
+@misc{RFC4456,
+	series =	{Request for Comments},
+	number =	4456,
+	howpublished =	{RFC 4456},
+	publisher =	{RFC Editor},
+	doi =		{10.17487/RFC4456},
+	url =		{https://rfc-editor.org/rfc/rfc4456.txt},
+        author =	{Enke Chen and Tony J. Bates and Ravi Chandra},
+	title =		{{BGP Route Reflection: An Alternative to Full Mesh Internal BGP (IBGP)}},
+	pagetotal =	12,
+	year =		2006,
+	month =		apr,
+	abstract =	{The Border Gateway Protocol (BGP) is an inter-autonomous system routing protocol designed for TCP/IP internets. Typically, all BGP speakers within a single AS must be fully meshed so that any external routing information must be re-distributed to all other routers within that Autonomous System (AS). This represents a serious scaling problem that has been well documented with several alternatives proposed. This document describes the use and design of a method known as "route reflection" to alleviate the need for "full mesh" Internal BGP (IBGP). This document obsoletes RFC 2796 and RFC 1966. {[}STANDARDS-TRACK{]}},
+}
+
+
+
+@misc{Jool,
+  title={Subsequent Address Family Identifiers (SAFI) Parameters},
+  author={Jool},
+  year={2019},
+  howpublished = {\url{https://jool.mx/en/intro-jool.html}},
+  note = {最終閲覧: 2019-12-23}
+}
+
+% JoolのPerformance調査
+@article{quintero2016performance,
+  title={Performance evaluation of IPv4/IPv6 transition mechanisms},
+  author={Quintero, Adira and Sans, Francisco and Gamess, Eric},
+  journal={International Journal of Computer Network and Information Security},
+  volume={8},
+  number={2},
+  pages={1},
+  year={2016},
+  publisher={Modern Education and Computer Science Press}
+}
+
+% iBGP RR が実はセッションを削減できるけどBGPupdateのサイズの評価手法
+@INPROCEEDINGS{6838346,
+  author={E. {Gutiérrez} and D. {Agriel} and E. {Saenz} and E. {Grampín}},
+  booktitle={2014 IEEE Network Operations and Management Symposium (NOMS)},
+  title={RRLOC: A tool for iBGP Route Reflector topology planning and experimentation},
+  year={2014},
+  volume={},
+  number={},
+  pages={1-4},
+  keywords={Internet;protocols;telecommunication network routing;telecommunication network topology;iBGP route reflector topology planning;RRLOC;iBGP route reflector topology experimentation;global routing system;Internet;routing table size;BGP protocol;inter-AS connectivity patterns;RR;route reflectors;global scalability problem;AS topology repositories;border gateway protocol;Topology;Routing;Network topology;Scalability;Algorithm design and analysis;Internet;Protocols;iBGP Toplogy;Route Reflectors;Scalability},
+  doi={10.1109/NOMS.2014.6838346},
+  ISSN={2374-9709},
+  month={May},
+}
