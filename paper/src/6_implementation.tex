@@ -25,7 +25,6 @@ Dynamic EAMTを実現するにあたって，EAMとして広告すべきに必�
 
 \subsection{実装}
 本提案手法では，IPv6ユニキャスト経路\footnote{アドレスファミリー番号 2, サブアドレスファミリー番号 1\cite{IANA_AFI,IANA_SAFI}}として，BGPを利用してEAMを広告・交換する．
-P
 UPDATEメッセージ以外の扱いは標準的なBGPメッセージに準ずる．
 
 \subsubsection{BGP UPDATEメッセージ}
@@ -66,19 +65,39 @@ BGPを利用したDynamic EAMTにおいて留意すべき事項を述べる．
 \label{implementation:poc}
 第\ref{evaluation}章で行う概念検証実験にもちいるPoC\footnote{Proof of Concept. 概念検証実装}について，各ノードで必要なコンポーネントとその役割及び具体的な実装について記述する．
 
-\begin{figure}[h]
-    \begin{center}
-    \includegraphics[width=12cm,pagebox=cropbox,clip]{img/poc_implementation.png}
-    \end{center}
-    \caption{PoCおける各コンポーネントの関係図}
-    \label{fig:poc_implementation}
-\end{figure}
 
 \subsection{各コンポーネントの実装}
 \label{implementation:poc:components}
 
-第\ref{proposal:network:nodes}項で述べたコンポーネントは以下の様にそれぞれ実装した．
-BRにおけるコンポーネントの関係を図\ref{fig:poc_implementation}に示す．
+\begin{figure}[h]
+    \begin{center}
+    \includegraphics[width=12cm,pagebox=cropbox,clip]{img/poc_implementation.png}
+    \end{center}
+    \caption{BRに必要なコンポーネント群の関係図}
+    \label{fig:poc_implementation}
+\end{figure}
+
+
+\begin{table}[]
+    \label{table:implementation}
+    \caption{PoCの実装に利用したソフトウェア群}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{cllcll}
+    \hline
+    \multicolumn{2}{c}{ソフトウェア名} & \multicolumn{1}{c}{種別} & \multicolumn{2}{c}{バージョン} & \multicolumn{1}{c}{概要} \\ \hline
+    \multicolumn{2}{c}{GoBGP} & BGPデーモン & \multicolumn{2}{c}{2.1.1} & Go言語によって実装されたOSSのBGPデーモン \\ \hline
+    \multicolumn{2}{c}{Jool} & SIIT機構 & \multicolumn{2}{c}{4.0.6.2} & SIITやStatefull NAT64をLinux上で動作させるためのOSS． \\ \hline
+    \multicolumn{2}{c}{siit-manipulatord} & SIIT制御機構 & \multicolumn{2}{c}{----} & SIIT機構をBGPに伴って制御するための自作アプリケーション \\ \hline
+    \multicolumn{2}{c}{Python} & 実行環境 & \multicolumn{2}{c}{3.7.3} & siit-manipulatodに利用する． \\ \hline
+    \multicolumn{2}{c}{PyYAML} & ライブラリ & \multicolumn{2}{c}{5.2} & siit-manipulatodに利用．YAML記法で書かれた設定ファイルの読み込みを行う． \\ \hline
+    \multicolumn{2}{c}{logzero} & ライブラリ & \multicolumn{2}{c}{1.5.0} & siit-manipulatodに利用．ログファイルの書き出しに利用． \\ \hline
+    \end{tabular}%
+    }
+\end{table}
+
+第\ref{proposal:network:nodes}項で述べたコンポーネント群は以下の様にそれぞれ実装した．
+BRにおけるBRに必要なコンポーネント群の関係図を図\ref{fig:poc_implementation}に示す．表\ref{table:implementation}にコンポーネント群の情報の概要を示す．
+
 
 \subsubsection{BGPデーモン}
 BGPデーモンには，OSSのBGPデーモンであるGoBGP\footnote{\url{https://osrg.github.io/gobgp/}}を利用する．
@@ -95,8 +114,60 @@ EAMTの変更には専用のCLIコマンドを利用する．
 \subsubsection{EAMT制御機構}
 \label{implementation:poc:siit-manipulatord}
 BGP上で受信したLoc-RIBをEAMTに反映するために，EAMT制御機構"siit-manipulatord"を実装した．
+gRPCによってGoBGPのLoc-RIBの変化を監視し，JoolのCLIコマンドを利用してLinux NetFilterに変更を反映するほか，Translation Prefixの定義などSIITに必要な情報を管理する．
 
-gRPCによってGoBGPのLoc-RIBの変化をJoolのCLIコマンドを利用してLinux NetFilter反映するほか、Translation Prefixの定義などSIITに必要な情報を管理する．
+\subsection{メッセージングと状態遷移}
+\label{implementation:poc:sequence}
+
+\begin{figure}[H]
+    \begin{center}
+    \includegraphics[width=15cm,pagebox=cropbox,clip]{img/sequence_manipulatord.pdf}
+    \end{center}
+    \caption{本PoCにおける各ホスト・コンポーネントの相互作用と状態遷移}
+    \label{fig:poc_implementation}
+\end{figure}
+
+図\ref{fig:poc_implementation}にIPv4サービス提供サーバー・ルートリフレクター・BRの相互作用と状態遷移の概要を示す．
+
+以下に各状態にあるホスト・コンポーネント間の相互作用に関して記述する．
+
+\subsection{SIIT機構の初期化}
+BRは起動後ネットワーク環境の準備が出来次第，BGPデーモンとSIIT制御機構のサービスを開始する．EAMT制御機構は初めにLinux Netfilterを操作し，SIITによるプロトコル変換を行うインスタンス\footnote{Jool Instance. ネットワーク名前空間ごとに一つ存在可能である．以後変換インスタンスと呼称する．}を作成する．このインスタンスはBRが利用する変換プレフィックスを保持する．その後EAMTを初期化し，gRPCを利用してBGPデーモンからLoc-RIBの監視を開始する．以後Loc-RIBに変更があるまで待機する．Loc-RIBの変更はベストパスの変更に伴っても発生するため，BGP NOTIFICATIONメッセージなどにより，ベストパスとなる経路情報を発信していたBGPピアとのコネクションが切断されたような場合にも，SIIT制御機構に変更通知が送信される．
+
+
+\subsection{ルートリフレクター・BR間のBGPコネクションの確立と維持}
+BRのBGPデーモンは起動次第，事前に登録されたルートリフレクターに対するBGP OPENメッセージの送信を開始し，BGPコネクションの確立を試みる．
+RRからのBGP OPENメッセージの回答を受けてBGPコネクションを確立し，以後BGP KEEPALIVEメッセージによって接続性の死活監視を行う．
+
+
+
+\subsection{IPv4サービス提供サーバー・ルートリフレクター間のBGPコネクションの確立と維持}
+IPv4サービス提供サーバーのBGPデーモンは起動に伴って，自身のLoc-RIBにEAM(変換プレフィックスとIPv4サービスアドレスによって構成されたNLRIを埋め込んだ経路情報)を登録する．
+BGPコネクションが確立次第，IPv4サービス提供サーバーはUPDATEメッセージによりEAMの追加をルートリフレクターに通知する．
+このコネクションでも同様に，以後BGP KEEPALIVEメッセージによって接続性の死活監視を行う．
+
+
+\subsection{EAMの追加}
+IPv4サービス提供サーバーからUPDATEメッセージはルートリフレクターにより各BRに伝達され，UPDATEメッセージを受信したBRのBGPデーモンは自身のLoc-RIBを更新する．
+
+Loc-RIBの更新に伴いLoc-RIBの監視を行っていたSIIT制御機構にgRPCを介し更新通知が送信される．以後のSIIT制御機構の処理はコルーチンを利用した非同期処理によって行われるため，EAMT走査にまつわる処理を行っている最中であってもLoc-RIBの監視はブロッキングされない．
+
+SIIT制御機構はEAMTの更新を滞りなく行うため，LinuxNetfilterに登録された現在のEAMTの状態を取得し，競合するEAMが登録されていないことを確認する．IPv4サービスアドレスとIPv6サービスアドレスが一致するEAMが存在していた場合や事前に登録された変換プレフィックスに一致しない場合，以後の処理をスキップする．
+
+新しく受信したEAMに問題がない場合，SIIT制御機構はEAMの追加を試みる．Linux Nefilterは新しいEAMが追加されたEAMTを参照し，直ちにパケットのフォワーディングを開始する．
+
+\subsection{EAMの削除}
+ルートリフレクターは，何らかの理由でIPv4サービス提供サーバーとのBGP KEEPALIVEメッセージが失敗した場合やBGP NOTIFICATIONメッセージを受信した場合，自身のLoc-RIBから該当のEAMを削除し，Adj-RIB-OUTの情報を更新する．
+
+ルートリフレクターからEAM削除を広告するBGP UPDATEメッセージを受け取ったBRのBGPデーモンはLoc-RIBを更新し，SIIT制御機構に対してLoc-RIB変更通知を送信する．EAMの追加時と同様に，EAMTを取得して該当するEAMの実在を確認後，SIIT制御機構はEAM削除を試みる．
+
+\subsection{EAMの更新}
+BGP経路情報の属性値の変更などに伴ってBRのLoc-RIBに登録されるベストパスが変更になる場合がある．
+
+BRのBGPデーモンはEAM追加・削除時同様に，SIIT制御機構に対してLoc-RIB変更通知を送信する．この変更通知に伴ってEAMT上の古いEAMは削除され，新しいEAMに更新される．
+
+
+
 
 %%% Local Variables:
 %%% mode: japanese-latex
