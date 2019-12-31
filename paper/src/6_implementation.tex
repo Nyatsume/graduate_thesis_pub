@@ -77,8 +77,26 @@ BGPを利用したDynamic EAMTにおいて留意すべき事項を述べる．
     \label{fig:poc_implementation}
 \end{figure}
 
+
+\begin{table}[]
+    \label{table:implementation}
+    \caption{PoCの実装に利用したソフトウェア群}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{cllcll}
+    \hline
+    \multicolumn{2}{c}{ソフトウェア名} & \multicolumn{1}{c}{種別} & \multicolumn{2}{c}{バージョン} & \multicolumn{1}{c}{概要} \\ \hline
+    \multicolumn{2}{c}{GoBGP} & BGPデーモン & \multicolumn{2}{c}{2.1.1} & Go言語によって実装されたOSSのBGPデーモン \\ \hline
+    \multicolumn{2}{c}{Jool} & SIIT機構 & \multicolumn{2}{c}{4.0.6.2} & SIITやStatefull NAT64をLinux上で動作させるためのOSS． \\ \hline
+    \multicolumn{2}{c}{siit-manipulatord} & SIIT制御機構 & \multicolumn{2}{c}{----} & SIIT機構をBGPに伴って制御するための自作アプリケーション \\ \hline
+    \multicolumn{2}{c}{Python} & 実行環境 & \multicolumn{2}{c}{3.7.3} & siit-manipulatodに利用する． \\ \hline
+    \multicolumn{2}{c}{PyYAML} & ライブラリ & \multicolumn{2}{c}{5.2} & siit-manipulatodに利用．YAML記法で書かれた設定ファイルの読み込みを行う． \\ \hline
+    \multicolumn{2}{c}{logzero} & ライブラリ & \multicolumn{2}{c}{1.5.0} & siit-manipulatodに利用．ログファイルの書き出しに利用． \\ \hline
+    \end{tabular}%
+    }
+\end{table}
+
 第\ref{proposal:network:nodes}項で述べたコンポーネント群は以下の様にそれぞれ実装した．
-BRにおけるBRに必要なコンポーネント群の関係図を図\ref{fig:poc_implementation}に示す．表refにコンポーネント群の情報の概要を示す．
+BRにおけるBRに必要なコンポーネント群の関係図を図\ref{fig:poc_implementation}に示す．表\ref{table:implementation}にコンポーネント群の情報の概要を示す．
 
 
 \subsubsection{BGPデーモン}
@@ -101,7 +119,7 @@ gRPCによってGoBGPのLoc-RIBの変化を監視し，JoolのCLIコマンドを
 \subsection{メッセージングと状態遷移}
 \label{implementation:poc:sequence}
 
-\begin{figure}[h]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[width=15cm,pagebox=cropbox,clip]{img/sequence_manipulatord.pdf}
     \end{center}
