@@ -1,6 +1,6 @@
 \chapter{評価}
 \label{evaluation}
-本章では，第\ref{proposal}章及び第\ref{implementation}章で設計・実装に関して述べた本提案手法に関して，第\ref{issue:siit-dc_problems}節で指摘したSIIT-DCの課題に対して有効性があることに対して定量的に評価を行う．
+本章では，第\ref{proposal}章及び第\ref{implementation}章で設計・実装に関して述べた本提案手法に関して，第\ref{issue:siit-dc_problems}節で指摘したSIIT-DCの課題に対して有効性があることに対して定量的に評価する．
 
 
 
@@ -10,15 +10,46 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 
 
 \subsection{BR間のEAMTの一貫性}
-SIIT-DCネットワークにおいて，各BRが一貫したEAMTを持つまでの時間を計測する．
+第\ref{issue:siit-dc_problems:consistent}項で示したように，SIIT-DCネットワークにおける各BRは一貫性のあるEAMTを保持する必要がある．
+本評価実験では後に述べるテストケースにおいて，以下の2点を検証することで各BRのEAMTが一貫性を有すると定義する．
+\begin{itemize}
+    \item \textbf{EAM数の収束} \\
+    EAMの更新が行われる事象が発生した場合に，一定の収束時間が経過した後に各BRのEAMTのレコード数が変化することなく，一意に収束すること．
+    \item \textbf{EAMTのレコードの内容} \\
+    EAM数が収束した際に各BRの有するEAMTの内容に差異が無いこと．
+\end{itemize}
 
 \subsection{変更追従性}
-サーバー構成が変更になった場合に，どれだけの時間でサービス提供が行えるかを計測する．
+第\ref{issue:siit-dc_problems:follow}で指摘したように，従来のSIIT-DCの構成ではIPv4サービスが追加・削除・変更された場合やBRの追加配備を行った場合に，各BRのEAMTの内容を適宜変更する必要があった．
+%本評価実験では下記のN点の要素を満たすことを，EAMTがIPv4サービスの構成変更に動的に追従する状態であると定める．
+
+本研究ではEAMT変更が必要な事象が発生した場合に，運用者が特別なオペレーションを行うことなくサービス提供を想定通りに開始・継続・中断される状況を，EAMTが変更に追従している状態であると定義する．
+
+本評価実験では下記の様なEAMT変更が必要な事象を想定する．
+
+\begin{itemize}
+    \item \textbf{IPv4サービスの追加・削除} \\
+    ネットワーク内のIPv6サービスにおいて，IPv4サービスアドレスを付与することでIPv4/IPv6の両プロトコルによるサービス提供を開始する場合．もしくは，そのサーバーが行っているIPv4サービス提供を中断する場合．
+    \item \textbf{IPv4サービス提供サーバーの変更} \\
+    SIIT-DCにおいて提供中のIPv4サービスに関して，他のIPv6アドレスを持つサーバーによるサービス提供を改めて開始する場合．
+    \item \textbf{BRの追加・撤去} \\ 
+    対外接続点に新しいBRを追加もしくは稼働中のBRを撤去しながらIPv4サービスを継続して行う場合．
+\end{itemize}
+
+% AWSのElastic LoadbalancerのTimeout時間は5秒． 1サービスアドレうあたり5秒以内に収束したら良いのでは．
 
 \subsection{スケーラビリティ}
-%ルートリフレクター部分は十分にスケールすることを示す．
-第\ref{proposal:compare}節で示したように，本提案手法はルートリフレクターを導入することにより，ネットワーク全体でのBGPコネクション数を低減出来ることがわかっている．
-本実験においてはネットワーク規模の拡大\footnote{IPv4サービスを提供するサーバーとBRがそれぞれ多くなった場合}がBR間のEAMTの一貫性と変更追従性の2指標に対して，どのような影響を及ぼすかを検証する．
+第\ref{consideration:points:scalability}で述べたように，DynamicEAMTを実現する機構は対外接続点やIPv4提供サービスの増加に柔軟に対応可能であることが望ましい．
+
+本評価実験では各ノードのスケールにおいては下記を想定し，IPv4提供サービスの総数が増加した場合においても，オーダーが増加することなく動作が可能であることを評価する．
+
+\begin{itemize}
+    \item BR: 2-30ホスト 
+    \item RR: 1-4ホスト 
+    \item IPv4提供サーバー: 120ホスト
+    \item EAM数: 0 - 10000
+\end{itemize}
+
 
 
 
@@ -28,9 +59,6 @@ SIIT-DCネットワークにおいて，各BRが一貫したEAMTを持つまで�
 
 \section{実験環境}
 第\label{implementation:poc}項で記述したPoC実装を利用する．
-
-ネットワークエミュレータ環境として，GNS3を利用する．
-
 
 
 \section{実験シナリオ1: SIIT-DCネットワークの構築}
