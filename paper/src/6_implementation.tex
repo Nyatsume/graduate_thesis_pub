@@ -69,7 +69,7 @@ BGPを利用したDynamic EAMTにおいて留意すべき事項を述べる．
 \subsection{各コンポーネントの実装}
 \label{implementation:poc:components}
 
-\begin{figure}[h]
+\begin{figure}[]
     \begin{center}
     \includegraphics[width=12cm,pagebox=cropbox,clip]{img/poc_implementation.png}
     \end{center}
@@ -78,7 +78,7 @@ BGPを利用したDynamic EAMTにおいて留意すべき事項を述べる．
 \end{figure}
 
 
-\begin{table}[]
+\begin{table}[h]
     \label{table:implementation}
     \caption{PoCの実装に利用したソフトウェア群}
     \resizebox{\textwidth}{!}{%
@@ -108,7 +108,7 @@ RouteReflector機構もサポートされているため，本PoCでは全ての
 \subsubsection{SIIT}
 SIITにはJool\footnote{Jool. \url{https://jool.mx/en/index.html}}のSIIT モードを利用する．
 
-JoolはLinuxOSで利用できるNAT64/SIIT環境で，Lunux Netfilterによって実装されており，汎用的に様々なプラットフォームでの利用が可能である\cite{JOOL,quintero2016performance}．
+JoolはLinuxOSで利用できるNAT64/SIIT環境で，Lunux Netfilterによって実装されており，汎用的に様々なプラットフォームでの利用が可能である\cite{Jool,quintero2016performance}．
 EAMTの変更には専用のCLIコマンドを利用する．
 
 \subsubsection{EAMT制御機構}
