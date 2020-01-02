@@ -29,9 +29,9 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 
 \begin{itemize}
     \item \textbf{IPv4サービスの追加・削除} \\
-    ネットワーク内のIPv6サービスにおいて，IPv4サービスアドレスを付与することでIPv4/IPv6の両プロトコルによるサービス提供を開始する場合．もしくは，そのサーバーが行っているIPv4サービス提供を中断する場合．
-    \item \textbf{IPv4サービス提供サーバーの変更} \\
-    SIIT-DCにおいて提供中のIPv4サービスに関して，他のIPv6アドレスを持つサーバーによるサービス提供を改めて開始する場合．
+    ネットワーク内のIPv6サービスにおいて，IPv4サービスアドレスを付与することでIPv4/IPv6の両プロトコルによるサービス提供を開始する場合．もしくは，そのサーバが行っているIPv4サービス提供を中断する場合．
+    \item \textbf{IPv4サービス提供サーバの変更} \\
+    SIIT-DCにおいて提供中のIPv4サービスに関して，他のIPv6アドレスを持つサーバによるサービス提供を改めて開始する場合．
     \item \textbf{BRの追加・撤去} \\ 
     対外接続点に新しいBRを追加もしくは稼働中のBRを撤去しながらIPv4サービスを継続して行う場合．
 \end{itemize}
@@ -46,7 +46,7 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 \begin{itemize}
     \item BR: 2-30ホスト 
     \item RR: 1-4ホスト 
-    \item IPv4提供サーバー: 120ホスト
+    \item IPv4提供サーバ: 120ホスト
     \item EAM数: 0 - 10000
 \end{itemize}
 
@@ -55,7 +55,7 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 本評価実験で利用した実験環境について述べる．
 第\label{implementation:poc}項で記述したPoC実装を利用する．
 
-\subsection{ネットワークトポロジー}
+\subsection{ネットワークトポロジ}
 \begin{figure}[H]
     \begin{center}
     \includegraphics[width=15cm,pagebox=cropbox,clip]{img/evaluation_experiment.pdf}
@@ -65,14 +65,14 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 \end{figure}
 
 本評価実験を行うために，WIDEプロジェクト\footnote{\url{https://www.wide.ad.jp/}}藤沢NOC内に実験用ネットワークを構築した．図\ref{fig:evaluation_experiment}は本実験用ネットワークの概略を示す．
-本ネットワークでは第\ref{issue:siit-dc-merit:scalability}項で述べたECMPエニーキャストによるBRの水平スケールを可能にするネットワークトポロジーを採用している．
+本ネットワークでは第\ref{issue:siit-dc-merit:scalability}項で述べたECMPエニーキャストによるBRの水平スケールを可能にするネットワークトポロジを採用している．
 
 
-本ネットワークでは，BR群(br01 $\cdots$ br30)のみWIDEネットワークを介してIPv4インターネットに接続している．WIDEプロジェクト内のルーターに対して，IPv4サービス提供サーバー群(Server01-01  $\cdots$ Server02-60)が利用するIPv4サービスアドレス群を，OSPFv2\cite{RFC2328}を利用したECMPエニーキャストにて広告する．これにより，インターネット上のIPv4クライアントからのIPv4パケットはいずれかのBRを経由し，Dynamic EAMTを参照したSIITによるネットワークプロトコル変換が各BRにて行われたのち，IPv6パケットとして各IPv4サービス提供サーバーに転送される．
+本ネットワークでは，BR群(br01 $\cdots$ br30)のみWIDEネットワークを介してIPv4インターネットに接続している．WIDEプロジェクト内のルータに対して，IPv4サービス提供サーバ群(Server01-01  $\cdots$ Server02-60)が利用するIPv4サービスアドレス群を，OSPFv2\cite{RFC2328}を利用したECMPエニーキャストにて広告する．これにより，インターネット上のIPv4クライアントからのIPv4パケットはいずれかのBRを経由し，Dynamic EAMTを参照したSIITによるネットワークプロトコル変換が各BRにて行われたのち，IPv6パケットとして各IPv4サービス提供サーバに転送される．
 
-各ホストは共通のIPv6ネットワーク上に所属し，WIDEプネットワークを介したインターネット疎通性を持つ．このIPv6ネットワークでは，各BRからIPv4サービス提供サーバー向けに，OSPFv3\cite{RFC5340}を利用したECMPエニーキャストによる変換プレフィックス向け経路広告が行われている．IPv4サービス提供サーバーからの変換プレフィックス宛のパケットは，いずれかのBRを経由してSIITによるネットワークプロトコル変換がなされたあと，インターネット上のIPv4提供クライアントに向けて返送される．
+各ホストは共通のIPv6ネットワーク上に所属し，WIDEプネットワークを介したインターネット疎通性を持つ．このIPv6ネットワークでは，各BRからIPv4サービス提供サーバ向けに，OSPFv3\cite{RFC5340}を利用したECMPエニーキャストによる変換プレフィックス向け経路広告が行われている．IPv4サービス提供サーバからの変換プレフィックス宛のパケットは，いずれかのBRを経由してSIITによるネットワークプロトコル変換がなされたあと，インターネット上のIPv4提供クライアントに向けて返送される．
 
-各ホスト間のDynamic EAMTに用いるBGPメッセージングは各ホストが共通して属するIPv6ネットワークを介して行われる．BR群及びIPv4サービス提供サーバー群はルートリフレクター群(rr01 $\cdots$ rr04)に対して，IPv6によるiBGPコネクションを確立する．本ネットワーク構成ではルートリフレクター間のBGPメッセージングは行わず，各IPv4サービス提供サーバーからの経路情報はネットワーク内で一意のクラスターIDを付与した上でBR群に広告される．
+各ホスト間のDynamic EAMTに用いるBGPメッセージングは各ホストが共通して属するIPv6ネットワークを介して行われる．BR群及びIPv4サービス提供サーバ群はるールートリフレクタ群(rr01 $\cdots$ rr04)に対して，IPv6によるiBGPコネクションを確立する．本ネットワーク構成ではるールートリフレクタ間のBGPメッセージングは行わず，各IPv4サービス提供サーバからの経路情報はネットワーク内で一意のクラスタIDを付与した上でBR群に広告される．
 
 \subsection{実装}
 本項では各ホストの実行環境について記述する．
@@ -80,8 +80,8 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
 
 
 \subsubsection{BR}
-本評価ネットワークにおけるBR群は，同一物理サーバーで仮想マシンとして稼働する．
-図\ref{table:eval_env_BR}に物理サーバーと仮想マシンの実行環境を詳細に示す．
+本評価ネットワークにおけるBR群は，同一物理サーバで仮想マシンとして稼働する．
+図\ref{table:eval_env_BR}に物理サーバと仮想マシンの実行環境を詳細に示す．
 
 
 \begin{table}[h]
@@ -93,7 +93,7 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
     \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{計算環境}} \\ \hline
     \multicolumn{1}{|c|}{機種} & \multicolumn{1}{c|}{CPU} & \multicolumn{1}{c|}{RAM} & \multicolumn{1}{c|}{NIC} \\ \hline
     Intel S2600WTT & 2CPU: Intel Xeon E5-2699 v3 2.30GHz & 64GB & \multicolumn{1}{c|}{Intel 82599EB 10-Gigabit SFI/SFP+} \\ \hline
-    \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ハイパーバイザー環境}} \\ \hline
+    \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ハイパーバイザ環境}} \\ \hline
     \multicolumn{1}{|c|}{OS} & \multicolumn{1}{c|}{バージョン} & \multicolumn{1}{c|}{vCPU} & \multicolumn{1}{c|}{備考} \\ \hline
     VMware ESXi & 6.7.0 & 72 & \multicolumn{1}{l|}{build: 5160138} \\ \hline
     \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{仮想マシン}} \\ \hline
@@ -103,11 +103,11 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
     }
 \end{table}
 
-\subsubsection{ルートリフレクター}
-本評価ネットワークにおけるBR群は，同一物理サーバーで仮想マシンとして稼働する．
-図\ref{table:eval_env_RR}に物理サーバーと仮想マシンの実行環境を詳細に示す．
+\subsubsection{るールートリフレクタ}
+本評価ネットワークにおけるBR群は，同一物理サーバで仮想マシンとして稼働する．
+図\ref{table:eval_env_RR}に物理サーバと仮想マシンの実行環境を詳細に示す．
 
-ルートリフレクターではGoBGPにてルートリフレクター機能に加えてダイナミックネイバー機能を有効化する．通常，BGPコネクションを確立するためにはBGPピア間で互いのピアリングアドレスを明示的に設定する必要があるが，本機能を利用することで動的に多数のBGPスピーカーとのピアリングが可能になる\cite{GoBGP_dynamic}．同様の機構は他のBGPデーモン・ネットワーク機器でも実装されている\cite{Cisco_dynamic}．
+るールートリフレクタではGoBGPにてるールートリフレクタ機能に加えてダイナミックネイバー機能を有効化する．通常，BGPコネクションを確立するためにはBGPピア間で互いのピアリングアドレスを明示的に設定する必要があるが，本機能を利用することで動的に多数のBGPスピーカとのピアリングが可能になる\cite{GoBGP_dynamic}．同様の機構は他のBGPデーモン・ネットワーク機器でも実装されている\cite{Cisco_dynamic}．
 
 
 \begin{table}[]
@@ -119,7 +119,7 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
     \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{計算環境}} \\ \hline
     \multicolumn{1}{|c|}{機種} & \multicolumn{1}{c|}{CPU} & \multicolumn{1}{c|}{RAM} & \multicolumn{1}{c|}{NIC} \\ \hline
     Dell PowerEdge R410 & 2CPU: Intel Xeon E5530 @ 2.40GHz & 16GB & \multicolumn{1}{c|}{HP NC522SFP Dual Port 10GbE Server Adapter} \\ \hline
-    \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ハイパーバイザー環境}} \\ \hline
+    \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ハイパーバイザ環境}} \\ \hline
     \multicolumn{1}{|c|}{OS} & \multicolumn{1}{c|}{バージョン} & \multicolumn{1}{c|}{vCPU} & \multicolumn{1}{c|}{備考} \\ \hline
     VMware ESXi & 6.5.0 & 16 & \multicolumn{1}{l|}{build: 15256549．} \\ \hline
     \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{仮想マシン}} \\ \hline
@@ -129,14 +129,14 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
     }
 \end{table}
 
-\subsubsection{IPv4サービス提供サーバー}
-本実験環境において，IPv4サービス提供サーバー群はコンテナ型仮想化\cite{soltesz2007container}を利用し，二つのホスト仮想マシン上で実行される．
-図\ref{table:eval_env_server}に物理サーバーとホスト仮想マシン及びコンテナの実行環境を詳細に示す．
+\subsubsection{IPv4サービス提供サーバ}
+本実験環境において，IPv4サービス提供サーバ群はコンテナ型仮想化\cite{soltesz2007container}を利用し，二つのホスト仮想マシン上で実行される．
+図\ref{table:eval_env_server}に物理サーバとホスト仮想マシン及びコンテナの実行環境を詳細に示す．
 
 
 \begin{table}[h]
     \label{table:eval_env_server}
-    \caption{評価実験用IPv4サービス提供サーバー群の実行環境}
+    \caption{評価実験用IPv4サービス提供サーバ群の実行環境}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{|cccc}
     \hline
@@ -144,7 +144,7 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
     \multicolumn{1}{|c|}{機種} & \multicolumn{1}{c|}{CPU} & \multicolumn{1}{c|}{RAM} & \multicolumn{1}{c|}{NIC} \\ \hline
     Dell PowerEdge R410 & 2CPU: Intel Xeon E5530 @ 2.40GHz & 48GB & \multicolumn{1}{c|}{HP NC522SFP Dual Port 10GbE Server Adapter} \\
     \multicolumn{1}{|l}{Dell PowerEdge R410} & \multicolumn{1}{l}{2CPU: Intel Xeon E5530 @ 2.40GHz} & 48GB & \multicolumn{1}{l|}{HP NC522SFP Dual Port 10GbE Server Adapter} \\ \hline
-    \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ハイパーバイザー環境}} \\ \hline
+    \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ハイパーバイザ環境}} \\ \hline
     \multicolumn{1}{|c|}{OS} & \multicolumn{1}{c|}{バージョン} & \multicolumn{1}{c|}{vCPU} & \multicolumn{1}{c|}{備考} \\ \hline
     VMware ESXi & 6.5.0 & 16 & \multicolumn{1}{l|}{build: 15256549． Pod1,Pod2で共通} \\ \hline
     \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{ホスト仮想マシン}} \\ \hline
@@ -157,16 +157,16 @@ SIIT-DCにおけるDynamicEAMT機構では，第\ref{consideration:points}節で
     }
 \end{table}
 
-\subsubsection{経路注入用サーバー}
-本提案手法のスケーラビリティをより効率的に検証するために，各ルートリフレクターに任意の数の経路を広告するサーバー(Injector)を設置する．
-実行環境はIPv4サービス提供サーバーと同一であるが，IPv4サービス提供サーバーは自身のIPv4サービスアドレスを一つ広告するのに対して，本サーバーは実際にはサービス提供に利用できないダミー経路を広告する．
+\subsubsection{経路注入用サーバ}
+本提案手法のスケーラビリティをより効率的に検証するために，各るールートリフレクタに任意の数の経路を広告するサーバ(Injector)を設置する．
+実行環境はIPv4サービス提供サーバと同一であるが，IPv4サービス提供サーバは自身のIPv4サービスアドレスを一つ広告するのに対して，本サーバは実際にはサービス提供に利用できないダミー経路を広告する．
 
 
 \section{実験シナリオ1: SIIT-DCネットワークの構築}
-このシナリオにおける，BRの数, サーバーの数を変数とした時に変化を調べる．
+このシナリオにおける，BRの数, サーバの数を変数とした時に変化を調べる．
 
 \subsection{ネットワーク構成}
-図を張る． BRとサーバーは水平スケールさせる．
+図を張る． BRとサーバは水平スケールさせる．
 
 
 \subsection{実験結果}
@@ -178,18 +178,18 @@ EAMTが一貫するまでの時間を調べる．
 線形に変化しており，O(n)の十分なスケーラビリティがある．
 
 
-\section{実験シナリオ2: サーバーの構成変更}
-このシナリオにおける，BRの数, サーバーの数を変数とした時に変化を調べる．
+\section{実験シナリオ2: サーバの構成変更}
+このシナリオにおける，BRの数, サーバの数を変数とした時に変化を調べる．
 
-サーバーの削除からのFailover(LPで重み替え)
+サーバの削除からのFailover(LPで重み替え)
 
 
 
 \subsection{ネットワーク構成}
-図を張る． BRとサーバーは水平スケールさせる．
+図を張る． BRとサーバは水平スケールさせる．
 
 \subsection{実験結果}
-追加したサーバー1台がサービス開始出来るまでの時間を，サーバー台数とBR台数が増えていった場合にも変わらず出来ることを証明．
+追加したサーバ1台がサービス開始出来るまでの時間を，サーバ台数とBR台数が増えていった場合にも変わらず出来ることを証明．
 
 
 \subsection{考察}
