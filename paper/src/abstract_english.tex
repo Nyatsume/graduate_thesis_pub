@@ -1,7 +1,7 @@
 Abstract of Master's Thesis - Academic Year 2019
 \begin{center}
 \begin{large}
-\begin{tabular}{|p{0.97\linewidth}|}
+\begin{tabular}{|M{0.97\linewidth}|}
     \hline
       \etitle \\
     \hline
@@ -9,14 +9,28 @@ Abstract of Master's Thesis - Academic Year 2019
 \end{large}
 \end{center}
 
+As of 2019, the needs for real-time services such as live video streaming are increasing, and for the purpose of avoiding disasters and geopolitical risks,
+companies who provide content service via the Internet are active in trying to multi tenant IDC(Internet Data Center).
+
+On the other hand, it is expected that the new allocation of IPv4 addresses will not be possible from each regional registry around 2020. In addition, the IAB (Internet Architecture Board) confirmed its policy in 2016 that Internet standards should be optimized for IPv6. Therefore, IDC operation based on IPv4 is not continuous.In other words, utilization of IPv6 single stack network that does not use IPv4 address as much as possible is indispensable for IDC content providers to expand their business.
+
+Howerver, it is necessary to design a network which can continuously provide the service by IPv4 even though it is the IPv6 single stack network because IPv4 traffic still account for the majority of all of the Internet traffic. 
+
+The "SIIT-DC" network design has been standardized as a way to provide IPv4 services in an IPv6 single-stack network.
+In SIIT-DC, equipments which called BR (Border Relay) are connected between IPv4 Internet and IPv6 IDC network translate IPv4 and IPv6 mutually by referring to Explicit Address Mapping Table (EAMT) in order to enable IPv4 service provision in IPv6 server. However, he dynamic advertisement method of EAMT does not difined at SIIT-DC standards. This causes a lack of EAMT consistency. Beacuse of it, SIIT-DC has two problems such as lack of redundancy in the multihoming network and enlargement of the operation load when a server is added or removed.
+
+In this paper, we propose an advertisement and update method of EAMT utilizing BGP (Border Gateway Protocol). 
+It becomes possible to construct the IPv6 single stack network flexibly corresponding to redundancy and reducing operational load which are problems of SIIT-DC.
+
+We implemented a software BR whose EAMT manipulated by BGP and a network for evaluation experiments. A proof-of-concept experiment was performed in this environment, and it was proven that this method worked effectively in EAMT problems mentioned above.
+
+
 ~ \\
-Dynamic advertising method of Explicit Address Mapping in IPv6 single stack network.
-~ \\
+
 Keywords : \\
-\underline{1. IPv6},
-\underline{2. Data center network},
-\underline{3. Network operation},
-\underline{4. IPv6 transition mechanism}
+\underline{１. Data center network},
+\underline{２. Network operation},
+\underline{３. IPv6 transition mechanism}
 \begin{flushright}
 \edept \\
 \eauthor
