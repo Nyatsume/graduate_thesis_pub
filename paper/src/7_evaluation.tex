@@ -101,7 +101,7 @@ IPv4提供サービスの総数が増加した場合においても，本提案�
 
 \subsection{実装}
 本項では各ホストの実行環境について記述する．
-各ホストが利用している，BGPデーモン・SIIT機構・SIIT制御機構の各コンポーネントは第\ref{implementation:poc:components}項で述べたPoCと同一の物を利用している．
+各ホストが利用している，BGPデーモン・SIIT機構・EAMT制御機構の各コンポーネントは第\ref{implementation:poc:components}項で述べたPoCと同一の物を利用している．
 
 
 \subsubsection{BR}
@@ -124,7 +124,7 @@ IPv4提供サービスの総数が増加した場合においても，本提案�
     VMware ESXi & 6.7.0 & 72 & \multicolumn{1}{l|}{build: 5160138} \\ \hline
     \multicolumn{4}{|c|}{\cellcolor[HTML]{EFEFEF}\textbf{仮想マシン}} \\ \hline
     \multicolumn{1}{|c|}{OS} & \multicolumn{1}{c|}{カーネル} & \multicolumn{1}{c|}{リソース} & \multicolumn{1}{c|}{利用コンポーネント} \\ \hline
-    Ubuntu 18.04.3 LTS & 4.15.0-72-generic & vCPU: 2 RAM:2GB & \multicolumn{1}{l|}{BGPデーモン，SIIT制御機構，SIIT機構} \\ \hline
+    Ubuntu 18.04.3 LTS & 4.15.0-72-generic & vCPU: 2 RAM:2GB & \multicolumn{1}{l|}{BGPデーモン，EAMT制御機構，SIIT機構} \\ \hline
     \end{tabular}%
     }
 \end{table}
@@ -202,7 +202,7 @@ IPv4提供サービスの総数が増加した場合においても，本提案�
     \item \textbf{ルートリフレクタの起動} \\
     ルートリフレクタ群を起動し，BGPデーモンの立ち上げを確認する．
     \item \textbf{BRの起動} \\
-    BRを起動し，BGPデーモン・SIIT制御機構の立ち上げを確認する．
+    BRを起動し，BGPデーモン・EAMT制御機構の立ち上げを確認する．
     \item \textbf{IPv4サービス提供サーバの起動} \\
     IPv4サービス提供サーバを$x$ホスト起動し，それぞれのサーバにおいてBGPデーモンの立ち上げ及びEAMのLoc-RIBへの反映を確認する．この時利用するIPv4サービスアドレスは事前に作成した正答となるEAMTを参照する．実験環境の都合上，サーバの起動は同期的に行う．
     \item \textbf{計測} \\
@@ -408,8 +408,9 @@ IPv4サービス提供サーバ1台がコネクション確立に掛かる時間
 
 
 
+\newpage
 \section{考察}
-\label{evaluation:eval2:consideration}
+\label{evaluation:consideration}
 本評価実験1の結果(\ref{evaluation:eval1:result})を通して本提案手法が各BRの一貫性の維持に有効であることが，本評価実験2の結果(\ref{evaluation:eval2:result})を通して本提案手法が変更追従性を十分に有していることがわかった．
 
 しかしながらIPv4サービス提供サーバ数$x$が大きい場合においては，ルートリフレクタのパフォーマンスの悪化を読み取る事ができる
