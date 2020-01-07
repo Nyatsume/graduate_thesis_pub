@@ -100,20 +100,16 @@ BRにおけるBRに必要なコンポーネント群の関係図を図\ref{fig:p
 
 
 \subsubsection{BGPデーモン}
-BGPデーモンには，OSSのBGPデーモンであるGoBGP\footnote{GoBGP \url{https://osrg.github.io/gobgp/}}を利用する．
-
-GoBGPではgRPC\footnote{gRPC Remote Procedure Calls. \url{https://www.grpc.io/}}を用いた操作機構が実装されており，同期・非同期を問わず他のアプリケーションとの連携が容易に行える．
+BGPデーモンには，OSSのBGPデーモンであるGoBGP\footnote{GoBGP \url{https://osrg.github.io/gobgp/}}を利用する．GoBGPではgRPC\footnote{gRPC Remote Procedure Calls. \url{https://www.grpc.io/}}を用いた操作機構が実装されており，同期・非同期を問わず他のアプリケーションとの連携が容易に行える．
 RouteReflector機構もサポートされているため，本PoCでは全てのノードのBGPデーモンとしてこれを利用する．
 
 \subsubsection{SIIT}
-SIITにはJool\footnote{Jool  \url{https://jool.mx/en/index.html}}のSIIT モードを利用する．
-
-JoolはLinuxOSで利用できるNAT64/SIIT環境で，Lunux Netfilterによって実装されており，汎用的に様々なプラットフォームでの利用が可能である\cite{Jool,quintero2016performance}．
+SIITにはJool\footnote{Jool  \url{https://jool.mx/en/index.html}}のSIIT モードを利用する．JoolはLinuxOSで利用できるNAT64/SIIT環境で，Lunux Netfilterによって実装されており，汎用的に様々なプラットフォームでの利用が可能である\cite{Jool,quintero2016performance}．
 EAMTの変更には専用のCLIコマンドを利用する．
 
 \subsubsection{EAMT制御機構}
 \label{implementation:poc:siit-manipulatord}
-BGP上で受信したLoc-RIBをEAMTに反映するために，EAMT制御機構"siit-manipulatord"を実装した．
+BGP上で受信したLoc-RIBをEAMTに反映するために，EAMT制御機構"siit-manipulatord"を実装する．
 gRPCによってGoBGPのLoc-RIBの変化を監視し，JoolのCLIコマンドを利用してLinux NetFilterに変更を反映するほか，Translation Prefixの定義などSIITに必要な情報を管理する．
 
 \subsection{メッセージングと状態遷移}
