@@ -13,7 +13,7 @@ SIIT-DCにおけるダイナミックEAMT機構では，第\ref{consideration:po
 \subsection{BR間のEAMTの一貫性}
 \label{evaluation:requirements:consistency}
 
-第\ref{issue:siit-dc_problems:consistent}項で示したように，SIIT-DCネットワークにおける各BRは一貫性のあるEAMTを保持する必要がある．
+SIIT-DCネットワークにおける各BRは一貫性のあるEAMTを保持する必要がある．
 本評価実験では後に述べるテストケースにおいて，以下の2点を検証することで各BRのEAMTが一貫性を有すると定義する．
 \begin{itemize}
     \item \textbf{EAM数の収束} \\
@@ -24,7 +24,7 @@ SIIT-DCにおけるダイナミックEAMT機構では，第\ref{consideration:po
 
 \subsection{変更追従性}
 \label{evaluation:requirements:change}
-第\ref{issue:siit-dc_problems:follow}で指摘したように，従来のSIIT-DCの構成ではIPv4サービスが追加・削除・変更された場合やBRの追加配備を行った場合に，各BRのEAMTの内容を適宜変更する必要があった．
+前に述べたように，従来のSIIT-DCの構成では，IPv4サービスが追加・削除・変更された場合やBRの追加配備を行った場合に，各BRのEAMTの内容を適宜変更する必要があった．
 
 本研究ではEAMT変更が必要な事象が発生した場合に，運用者が特別なオペレーションを行うことなくサービス提供を想定通りに開始・継続・中断される状況を，EAMTが変更に追従している状態であると定義する．
 
@@ -43,7 +43,7 @@ SIIT-DCにおけるダイナミックEAMT機構では，第\ref{consideration:po
 
 \subsection{スケーラビリティ}
 \label{evaluation:requirements:scalability}
-第\ref{consideration:points}項で述べたように，ダイナミックEAMTを実現する機構は対外接続点やIPv4提供サービスの増加に柔軟に対応可能であることが望ましい．
+ダイナミックEAMTを実現する機構は対外接続点やIPv4提供サービスの増加に柔軟に対応可能であることが望ましい．
 
 本評価実験では各ノードのスケールにおいては下記を想定した評価試験用ネットワークを実装する．
 IPv4提供サービスの総数が増加した場合においても，本提案手法が動作が可能であることを評価する．
