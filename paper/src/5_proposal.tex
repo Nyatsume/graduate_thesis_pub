@@ -4,8 +4,11 @@
 本章では検討結果の得られた内容を基に，本研究において提案するダイナミックEAMTの実現手法の設計に関して論じる．
 
 \section{概要}
-本提案手法では動的経路制御プロトコルであるBGPを利用したサーバ・BR間のメッセージングにより，SIIT-DCネットワークにおけるダイナミックEAMTを実現する．
-加えて\ref{consideration:approach}で論じた中央管理型・分散管理型の両アプローチの利点を活用可能な，IBGP(Internal BGP)・RR(Route Reflector)構成を採用することにより，デプロイメントが容易且つスケーラビリティに優れたメッセージングが可能になる．
+第\ref{consideration:summary}で述べたように，分散管理型アプローチと中央管理型アプローチの双方に優位点があり，ネットワークやサービスの規模に合わせて柔軟に選択可能であると望ましい．
+
+本研究では，動的経路制御プロトコルであるBGPを利用したサーバ・BR間のメッセージングにより，SIIT-DCネットワークにおけるダイナミックEAMT機構を提案する．
+本提案手法は，IBGP(Internal BGP)・RR(Route Reflector)構成を採用することで，ネットワークやサービスの規模に合わせてスケールアウトすることが可能であり，両アプローチの優位点を備えていると言える．
+
 
 \section{BGP}
 \subsection{概要}
@@ -147,7 +150,7 @@ BR及びIPv4サービス提供サーバは，ルートリフレクタとのみBG
 
 \begin{table}[h]
     \caption{各手法の比較}
-    \label{table:compare_approach}
+    \label{table:compare_proposal}
     \resizebox{\textwidth}{!}{%
     \begin{tabular}{lcccc}
     \hline
@@ -160,7 +163,7 @@ BR及びIPv4サービス提供サーバは，ルートリフレクタとのみBG
     \end{tabular}%
 }
 \end{table}
-表\ref{table:compare_approach}にそれぞれの項目における比較結果を示す．なお，コントローラーもしくはルートリフレクタの導入数を$L$，サーバ数を$M$，BRの数を$N$としている．
+表\ref{table:compare_proposal}にそれぞれの項目における比較結果を示す．なお，コントローラーもしくはルートリフレクタの導入数を$L$，サーバ数を$M$，BRの数を$N$としている．
 
 \subsection{EAMTの一貫性}
 BGPはインターネットの経路広告手法として広く利用されており，多数のルータ間で一定の一貫性を保つことがプロトコルレベルで保証されている．
