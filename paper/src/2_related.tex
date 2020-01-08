@@ -98,3 +98,32 @@ IPv4/IPv6トランスレーションではIPv4アドレスをIPv6アドレスと
 
 一方でIPv4とIPv6のプロトコル実装に差があるため，コンテンツ事業者のサービスの内容によってはサービス影響を考慮する必要がある点は留意すべきである．
 
+
+\section{本章のまとめ}
+\ref{related:abstract:requirements}項で述べた評価要件を尺度として，各IPv4サービス提供手法の特徴を比較した図を\ref{table:related_compare}に示す．
+
+基本的なIPv4サービス提供手法の必要要件であるIPv4クライアントからのアクセスは各手法とも充足可能な一方，スケーラビリティの面では1:1/1:Mの接続が必須になるIPv4/IPv6トンネリング手法が他の手法から大きく劣る．
+またL7リバースプロキシ手法はスケールアウト可能なアーキテクチャであるが，L4LB及びプロキシサーバLまでIPv4ネットワークを配備する必要があるため，IPv4ネットワークへの依存性が大きい．
+
+IPv4/IPv6トランスレーション手法はスケールアウトが可能であり，IPv4ネットワークへの依存性が小さいため，IPv6シングルスタックネットワーク環境でのIPv4サービス提供手法として最も要件に適合する．
+
+
+\begin{table}[h]
+  \label{table:related_compare}
+  \caption{IPv4サービス提供手法の比較}
+  \centering
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lccc}
+  \hline
+  \multicolumn{1}{c}{手法名} & IPv4クライアントからのアクセス & \multicolumn{1}{l}{スケーラビリティ} & \multicolumn{1}{l}{IPv4ネットワークへの依存性} \\ \hline
+  (参考)IPv4/IPv6デュアルスタック & 可能 & 困難 & 大 \\
+  L7 リバースプロキシ & 可能 & スケールアウト可 & 中 \\
+  IPv4/IPv6 トンネリング & 可能 & 困難 & 中 \\
+  IPv4/IPv6 トランスレーション & 可能 & スケールアウト可 & 小 \\ \hline
+  \end{tabular}%
+  }
+\end{table}
+%%% Local Variables:
+%%% mode: japanese-latex
+%%% TeX-master: "../thesis"
+%%% End:
