@@ -45,7 +45,7 @@ UPDATEメッセージ以外の扱いは標準的なBGPメッセージに準ず�
     9 & ORIGINATOR\_ID & 必須 & \multicolumn{1}{l}{BGP Identifier} & 自身のルータID & 192.0.2.1 \\ \hline
     10 & CLUSTER\_LIST & 任意 & \multicolumn{1}{l}{クラスタID} & \begin{tabular}[c]{@{}l@{}}ルートリフレクタを利用する場合，要指定\\ 同じEAMTを共有する範囲を指定する\end{tabular} & 192.0.2.1 \\ \hline
     14 & \begin{tabular}[c]{@{}l@{}}MP\_REACH\_NLRI\\ -\textgreater NLRI\end{tabular} & \multicolumn{1}{c}{必須} & IPv6アドレス+プレフィックス長 & 変換プレフィックス + IPv4サービスアドレス/128 & 64:ff9b::192.0.2.1/128 \\ \hline
-    14 & \begin{tabular}[c]{@{}l@{}}MP\_REACH\_NLRI\\ -\textgreater NEXT\_HOP\end{tabular} & 必須 & IPv6アドレス & 変換プレフィックス + IPv4サービスアドレス/128 & 2001:db8:200::1 \\ \hline
+    14 & \begin{tabular}[c]{@{}l@{}}MP\_REACH\_NLRI\\ -\textgreater NEXT\_HOP\end{tabular} & 必須 & IPv6アドレス & IPv6サービスアドレス & 2001:db8:200::1 \\ \hline
     15 & MP\_UNREACH\_NLRI & \multicolumn{1}{c}{必須} & \multicolumn{3}{c}{MP\_REACH\_NLRIと同様} \\ \hline
     \end{tabular}%
     }
