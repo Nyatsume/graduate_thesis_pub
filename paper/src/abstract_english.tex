@@ -1,4 +1,4 @@
-Abstract of Master's Thesis - Academic Year 2019
+Abstract of Bachelor's Thesis - Academic Year 2020
 \begin{center}
 \begin{large}
 \begin{tabular}{|M{0.97\linewidth}|}
@@ -9,23 +9,25 @@ Abstract of Master's Thesis - Academic Year 2019
 \end{large}
 \end{center}
 
-The transition from the IPv4 Internet to the IPv6 Internet is gaining momentum at present. Many ISPs (Internet Service Providers) have already completed the environment improvement of the IPv6 access network by operating in IPv4/IPv6 dual-stack network. Client devices such as PCs and smartphones have been required to use IPv6. In the client devices represented by PC and smartphone, the utilization of IPv6 becomes very popular.
+Write abstract
 
-In this situation, the correspondence to the IPv6 access of companies that provide content services via the Internet lags behind. It is expected that the new allocation of IPv4 addresses will not be possible from each regional registry. In addition, the IAB (Internet Architecture Board) confirmed its policy in 2016 that Internet standards should be optimized for IPv6. Therefore, IDC operation based on IPv4 is not continuous. In other words, the utilization of IPv6 single stack network that does not use IPv4 addresses as much as possible is indispensable for IDC content providers to expand their business.
+% The transition from the IPv4 Internet to the IPv6 Internet is gaining momentum at present. Many ISPs (Internet Service Providers) have already completed the environment improvement of the IPv6 access network by operating in IPv4/IPv6 dual-stack network. Client devices such as PCs and smartphones have been required to use IPv6. In the client devices represented by PC and smartphone, the utilization of IPv6 becomes very popular.
 
-However, it is necessary to design a network that can continuously provide the service by IPv4 even though it is the IPv6 single stack network because IPv4 traffic still accounts for the majority of all of the Internet traffic. 
+% In this situation, the correspondence to the IPv6 access of companies that provide content services via the Internet lags behind. It is expected that the new allocation of IPv4 addresses will not be possible from each regional registry. In addition, the IAB (Internet Architecture Board) confirmed its policy in 2016 that Internet standards should be optimized for IPv6. Therefore, IDC operation based on IPv4 is not continuous. In other words, the utilization of IPv6 single stack network that does not use IPv4 addresses as much as possible is indispensable for IDC content providers to expand their business.
 
-The "SIIT-DC" network design has been standardized as a way to provide IPv4 services in an IPv6 single-stack network. In SIIT-DC, equipment which called BR (Border Relay) is connected between IPv4 Internet and IPv6 IDC network translate IPv4 and IPv6 mutually by referring to Explicit Address Mapping Table (EAMT) in order to enable IPv4 service provision in IPv6 server. 
+% However, it is necessary to design a network that can continuously provide the service by IPv4 even though it is the IPv6 single stack network because IPv4 traffic still accounts for the majority of all of the Internet traffic. 
 
-Nevertheless, the dynamic advertisement method of EAMT does not define at SIIT-DC standards. This causes a lack of EAMT consistency. Because of it, SIIT-DC has two problems such as lack of redundancy in the multihoming network and enlargement of the operation load when a server is added or removed. "Dynamic EAMT" mechanism which manipulates EAMT of BR dynamically is required.
+% The "SIIT-DC" network design has been standardized as a way to provide IPv4 services in an IPv6 single-stack network. In SIIT-DC, equipment which called BR (Border Relay) is connected between IPv4 Internet and IPv6 IDC network translate IPv4 and IPv6 mutually by referring to Explicit Address Mapping Table (EAMT) in order to enable IPv4 service provision in IPv6 server. 
 
-In this paper, we propose an advertisement and update method of EAMT utilizing BGP (Border Gateway Protocol). BGP is a popular dynamic routing protocol and can maintain the consistency of routing information in response to changes in the state of BGP peers.
-The proposed method can construct the IPv6 single stack network flexibly corresponding to redundancy and reducing operational load which is the problem of SIIT-DC. This paper also propose a more scalable Dynamic EAMT mechanism using multilayered route reflectors.
+% Nevertheless, the dynamic advertisement method of EAMT does not define at SIIT-DC standards. This causes a lack of EAMT consistency. Because of it, SIIT-DC has two problems such as lack of redundancy in the multihoming network and enlargement of the operation load when a server is added or removed. "Dynamic EAMT" mechanism which manipulates EAMT of BR dynamically is required.
 
-I implemented a software BR whose EAMT manipulated by BGP and a proof-of-concept network for evaluation experiments. 
-The evaluation experiments show that the proposed method can dynamically control the EAMT of 30 BRs inconsistent from the information of up to 600 IPv4 servers by using a 1 layer route reflector topology. In addition, by adopting the multilayer route reflector topology, it was clarified to correspond to the larger-scale network.
+% In this paper, we propose an advertisement and update method of EAMT utilizing BGP (Border Gateway Protocol). BGP is a popular dynamic routing protocol and can maintain the consistency of routing information in response to changes in the state of BGP peers.
+% The proposed method can construct the IPv6 single stack network flexibly corresponding to redundancy and reducing operational load which is the problem of SIIT-DC. This paper also propose a more scalable Dynamic EAMT mechanism using multilayered route reflectors.
 
-This research proved that this method worked effectively in EAMT problems mentioned above, and is expected to improve the quality of IPv4 service provision in IPv6 single stack networks of future IDC network design.
+% I implemented a software BR whose EAMT manipulated by BGP and a proof-of-concept network for evaluation experiments. 
+% The evaluation experiments show that the proposed method can dynamically control the EAMT of 30 BRs inconsistent from the information of up to 600 IPv4 servers by using a 1 layer route reflector topology. In addition, by adopting the multilayer route reflector topology, it was clarified to correspond to the larger-scale network.
+
+% This research proved that this method worked effectively in EAMT problems mentioned above, and is expected to improve the quality of IPv4 service provision in IPv6 single stack networks of future IDC network design.
 
 ~\\ 
 

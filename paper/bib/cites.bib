@@ -1,3 +1,49 @@
+% 高速 dplane技術
+
+@inproceedings{XDP,
+	author    = {H\o{}iland-J\o{}rgensen, Toke and Brouer, Jesper Dangaard and Borkmann, Daniel and Fastabend, John and Herbert, Tom and Ahern, David and Miller, David},
+	title     = {The EXpress Data Path: Fast Programmable Packet Processing in the Operating System Kernel},
+	year      = {2018},
+	isbn      = {9781450360807},
+	publisher = {Association for Computing Machinery},
+	address   = {New York, NY, USA},
+	url       = {https://doi.org/10.1145/3281411.3281443},
+	doi       = {10.1145/3281411.3281443},
+	abstract  = {Programmable packet processing is increasingly implemented using kernel bypass techniques, where a userspace application takes complete control of the networking hardware to avoid expensive context switches between kernel and userspace. However, as the operating system is bypassed, so are its application isolation and security mechanisms; and well-tested configuration, deployment and management tools cease to function.To overcome this limitation, we present the design of a novel approach to programmable packet processing, called the eXpress Data Path (XDP). In XDP, the operating system kernel itself provides a safe execution environment for custom packet processing applications, executed in device driver context. XDP is part of the mainline Linux kernel and provides a fully integrated solution working in concert with the kernel's networking stack. Applications are written in higher level languages such as C and compiled into custom byte code which the kernel statically analyses for safety, and translates into native instructions.We show that XDP achieves single-core packet processing performance as high as 24 million packets per second, and illustrate the flexibility of the programming model through three example use cases: layer-3 routing, inline DDoS protection and layer-4 load balancing.},
+	booktitle = {Proceedings of the 14th International Conference on Emerging Networking EXperiments and Technologies},
+	pages     = {54–66},
+	numpages  = {13},
+	keywords  = {BPF, XDP, DPDK, programmable networking},
+	location  = {Heraklion, Greece},
+	series    = {CoNEXT '18}
+}
+
+@inproceedings{netmap,
+	title     = {Netmap: a novel framework for fast packet I/O},
+	author    = {Rizzo, Luigi},
+	booktitle = {21st USENIX Security Symposium (USENIX Security 12)},
+	pages     = {101--112},
+	year      = {2012}
+}
+
+@misc{DPDK,
+	title  = {Data plane development kit},
+	author = {Intel, DPDK},
+	year   = {2014}
+}
+
+% 高速D-plane技術(service)
+@misc{Katran,
+	title  = {Open-sourcing Katran, a scalable network load balancer},
+	author = {Nikita Shirokov, Ranjeeth Dasineni},
+	year   = {2018},
+	note   = {\url{https://engineering.fb.com/2018/05/22/open-source/open-sourcing-katran-a-scalable-network-load-balancer/}}
+}
+
+
+
+
+
 % VXLAN
 @misc{RFC7348,
 	series =	{Request for Comments},
