@@ -2,17 +2,15 @@
 \label{introduction}
 本章では本研究の背景と全体の構成について記述する．
 
-\section{背景}
+\section{ロードバランサを取り巻く環境}
 \label{introduction:background}
 
-
-\subsection{ロードバランサを取り巻く環境}
-
-\subsubsection{大規模ネットワークサービスの台頭}
+\subsection{大規模ネットワークサービスの台頭}
 スマートフォンやタブレットの普及，またWi-Fiスポットの増加などに伴い，インターネットのトラフィックは近年急速に増加している \cite{Cisco_Analysis}.
 それに伴い，インターネットサービスを展開する際には，大量のトラフィックを処理するために，ロードバランサーを設置して複数のサーバにトラフィックを分散するというアプローチが一般的に取られている．
 
-\subsubsection{ロードバランサーのソフトウェア化}
+\subsection{ロードバランサーのソフトウェア化}
+\label{introduction:background:software_lb}
 従来，ロードバランサはF5 Networks\footnote{\url{https://www.f5.com/ja_jp}}, Cirtix\footnote{\url{https://www.citrix.com/ja-jp/}}等を代表とするハードウェアアプライアンス製品が一般的であった．しかし，ハードウェアロードバランサは処理能力は優れているものの，以下のような課題を抱えていた．
 \begin{itemize}
     \item \textbf{物理スペースの圧迫}
@@ -24,6 +22,14 @@
 \end{itemize}
 
 このようなオペレーター，ユーザー双方にとってコストが高いハードウェアロードバランサーに代わり，Google\footnote{\url{https://www.google.com/}}のMagrev\cite{Magrev}やMicrosoft\footnote{\url{https://www.microsoft.com/ja-jp}}のAnanta\cite{ananta}といったように，大規模なサービスを提供している企業はロードバランサを自社技術を用いてソフトウェア化し始めた．各企業の高速ロードバランサの詳細に関しては，\ref{related:rapidlb}章にて説明する．
+
+\subsection{データプレーン処理の高速化}
+\ref{introduction:background:software_lb}章で例示したソフトウェアロードバランサは，ハードウェアロードバランサと比較して劣る単体の処理性能を，汎用サーバーとソフトウェアデータプレーンを複数構成し，スケールアウトすることによって補っている．また，単体の集積効率をできるだけ向上させるため，DPDK\cite{DPDK},Netmap\cite{netmap}等のカーネルバイパス技術を用いている．これにより，特定のネットワーク処理に特化しないLinuxサーバにおいても，高速なパケット処理を実現している．高速データプレーン処理技術の詳細については，\ref{related:a-dplane}章にて説明する．
+
+
+\section{本研究の着目する課題}
+ソフトウェアロードバランサーのデータプレーン高速化に貢献しているカーネルバイパスをはじめとする高速パケットフレームワークは，
+
 
 
 
